@@ -1,24 +1,63 @@
-
-<!-- <h1>login</h1>
-<nav>
-  <a routerLink="/login"></a>
-  <form>
-  <p>
-    <mat-form-field>
-      <input matInput placeholder="Input">
-    </mat-form-field>
-  </p>
-
-  </form>
-  login works
-</nav> -->
-<!-- <router-outlet></router-outlet>
-<app-messages></app-messages> -->
-<div fxlayout=column>
-
-
-
+<!-- <a routerLink="/login"></a> -->
+<div fxLayout="column" fxLayoutGap.lg=10% fxLayoutGap.md=10% fxLayoutGap.xl=10% fxLayoutGap.xs=20% fxLayoutGap.sm=20%>
+  <!-- top1-> -->
+  <div fxFlex.lg=33%  fxFlex.md=0 fxFlex.sm=0 fxFlex.xs=0></div>
+<!-- middle -->
+  <div  fxLayout="row">
+    <!-- middle-left -->
+      <div fxFlex.lg=40% fxFlex.md=0 fxFlex.xs=0 fxFlex.sm=0></div>
+       
+          
+              
+              <mat-card>
+               <div style="padding:0px 60px  "> 
+                <mat-card-title>Sign in</mat-card-title>
+                <!-- middle-middle -->
+                  <!-- <div  fxLayout="column" > -->
+                <!-- middle-middle-left -->
+              <!-- <div > -->
+               <p class="input_fields" >
+                  <mat-form-field>
+                   <mat-label>email id</mat-label>
+                   <input matInput placeholder="enter email id">
+                  </mat-form-field>
+                  </p>
+                <!-- </div> -->
+                <!-- middle-middle-middle -->
+                <!-- <div > -->
+                  <p class="input_fields">
+                  <mat-form-field>
+                   <mat-label>password</mat-label>
+                   <input matInput placeholder="password">
+                  </mat-form-field>
+                  </p><p>
+                  <a href="">forgot password?</a></p>
+                  <!-- </div> -->
+                  <!-- middle-middle-right -->
+                    <div >
+              
+                  <div><a href="" style="float:left">create an account..</a>
+                  <button mat-button class="button" >login</button></div>
+                  </div>
+             </div>
+             
+          </mat-card>
+        
+          <!-- middle-right -->
+            <div fxFlex.lg=0 fxFlex.xs=0 fxFlex.sm=0 fxFlex.md=0></div>
+        </div>
+  
+  
+  <!-- bottom -->
+  <div fxFlex.lg=33% fxLayoutGap.xs=0 fxFlex.sm=0></div>
 
 </div>
+<!-- <router-outlet></router-outlet> -->
+<!-- <div fxFlex.lg=20% fxFlex.xs=0 fxFlex.sm=20 ></div> -->
+    <!-- <div fxFlex.lg=25%></div> -->
 
 
+
+    <!-- fxFlex.xs=20% fxFlex.sm=20% fxFlex.md=20%
+    fxFlex.xs=30% fxFlex.sm=30% fxFlex.md=30%
+    fxFlex.xs=50% fxFlex.sm=50% fxFlex.md=50% -->
