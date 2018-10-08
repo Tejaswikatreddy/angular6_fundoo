@@ -1,0 +1,50 @@
+<!-- <a routerLink="/login"></a> -->
+<div fxLayout="column"  fxLayoutGap="10%">
+  <div fxFlex.lg="10%" fxFlex.xl="10%" fxFlex.md="10%" fxFlex.sm="0%" fxFlex.xs="0%" ></div>
+  <div fxLayout="row" fxFlex.lg="80%" fxFlex.xl="80%" fxFlex.md="80%" fxFlex.sm="100%" fxFlex.xs="100%" >
+    <div fxFlex.lg="30%" fxFlex.xl="10%" fxFlex.md="10%" fxFlex.sm="0%" fxFlex.xs="0%" ></div>
+
+
+    <div fxFlex.lg="40%" fxFlex.xl="80%" fxFlex.md="80%" fxFlex.sm="100%" fxFlex.xs="100%">
+      <mat-card>
+        <div>
+          <mat-card-title>Sign up</mat-card-title>
+
+          <mat-form-field class="input">
+            <input matInput placeholder="first name" >
+          </mat-form-field>
+          <mat-form-field class="input" style="margin-left:2%">
+            <input matInput placeholder="last name" >
+          </mat-form-field><br>
+      
+          <mat-form-field style="width:80%">
+            <input matInput type="email" placeholder="email id" >
+          </mat-form-field><br>
+         
+          <mat-form-field class="input">
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+          </mat-form-field>
+          <mat-form-field style="margin-left:2%" class="input">
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+
+          <div flexLayout="row" fxLayoutAlign="center">
+            <div fxFlex.lg="30%" >
+              <a (click)=clicked_basic()><mat-card  [ngClass]="Bclicked ? 'Clicked' : 'notClicked'"></mat-card></a>
+            </div>
+            <div fxFlex.lg="30%">
+              <a (click)=clicked_advance()><mat-card [ngClass]="Aclicked ? 'Clicked' : 'notClicked'"></mat-card></a>
+            </div>
+          </div> <br>
+            
+          <a routerLink="/login" >Signin if already have an account</a>
+          <button mat-button class="button">signup</button>
+        </div>
+      </mat-card>
+    </div>
+
+    <div fxFlex.lg="30%" fxFlex.xl="10%" fxFlex.md="10%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
+  </div>
+  <div fxFlex.lg="10%" fxFlex.xl="10%" fxFlex.md="10%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
+</div>

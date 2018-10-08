@@ -10,11 +10,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
+import { SignupComponent } from './components/signup/signup.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
       AppComponent,
-    LoginComponent    
+    LoginComponent,
+    SignupComponent    
   ],
   imports: [
     BrowserModule,
@@ -24,7 +28,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     FlexLayoutModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatRadioModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

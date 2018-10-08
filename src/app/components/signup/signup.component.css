@@ -1,0 +1,19 @@
+.button{
+    border-radius: 0;
+        /* box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); */
+        background-color: rgb(22,125,243);
+        float:right;
+}
+a{
+    font-size: 80%;
+    text-align: left;
+}
+.Clicked{
+   background-color: grey;
+}
+.notClicked{
+      background-color:papayawhip;
+}
+.input{
+    width:45%;
+}
