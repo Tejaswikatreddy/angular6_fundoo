@@ -8,10 +8,10 @@ a{
     font-size: 80%;
     text-align: left;
 }
-.Clicked{
+.selected{
    background-color: grey;
 }
-.notClicked{
+.notselected{
       background-color:papayawhip;
 }
 .input{

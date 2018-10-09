@@ -13,12 +13,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { SignupComponent } from './components/signup/signup.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
+import { SignupService } from './services/signup.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
       AppComponent,
     LoginComponent,
-    SignupComponent    
+    SignupComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -30,9 +34,13 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     MatButtonModule,
     MatRadioModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    SignupService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
