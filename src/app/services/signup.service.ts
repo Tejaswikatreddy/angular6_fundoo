@@ -11,6 +11,7 @@ export class SignupService {
     return this.http.get(this.URL+"/"+name);
   }
   postData(name,body){
+    console.log(body)
     return this.http.post(this.URL+"/"+name,body);
   }
 }

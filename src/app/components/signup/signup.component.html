@@ -7,27 +7,61 @@
 
 
     <div fxFlex.lg="40%" fxFlex.xl="80%" fxFlex.md="80%" fxFlex.sm="100%" fxFlex.xs="100%">
-      <form name="form" (ngSubmit)="signup()">
+      <!-- <form name="form"> -->
       <mat-card>
         <div>
           <mat-card-title>Sign up</mat-card-title>
 
           <mat-form-field class="input">
-            <input matInput placeholder="first name" name="firstname" [(ngModel)]="model.firstName" #firstName="ngModel">
+            <input matInput placeholder="first name" name="firstname" [(ngModel)]="model.firstName" #firstName="ngModel" required>
+            <mat-hint *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+            
+              <mat-hint *ngIf="firstName.errors.required">
+               first Name is required.
+              </mat-hint>
+            </mat-hint>
           </mat-form-field>
           <mat-form-field class="input" style="margin-left:2%">
-            <input matInput placeholder="last name" name="lastname" [(ngModel)]="model.lastName" #lastName="ngModel" >
+            <input matInput placeholder="last name" name="lastname" [(ngModel)]="model.lastName" #lastName="ngModel" required>
+              <mat-hint *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+              
+                <mat-hint *ngIf="lastName.errors.required">
+                 last Name is required.
+                </mat-hint>
+              </mat-hint>
           </mat-form-field><br>
       
           <mat-form-field style="width:80%">
-            <input matInput type="email" placeholder="email id" name="emailid" [(ngModel)]="model.emailid" #emailid="ngModel" >
+            <input matInput type="email" placeholder="email id" name="emailid" [(ngModel)]="model.email" class="form-control" #emailid="ngModel" required>
+            <mat-hint *ngIf="emailid.invalid && (emailid.dirty || emailid.touched)">
+              
+                <mat-hint *ngIf="emailid.errors.required">
+                 emailid is required.
+                </mat-hint>
+                 <mat-hint *ngIf="emailid.errors.email">
+                  valid emailid is required.
+                </mat-hint>
+              </mat-hint>
           </mat-form-field><br>
          
           <mat-form-field class="input">
-            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="model.password" #password="ngModel">
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="model.password"  #password="ngModel" required>
+            <mat-hint *ngIf="password.invalid && (password.dirty || password.touched)">
+            
+              <mat-hint *ngIf="password.errors.required">
+                Password is required.
+              </mat-hint>
+            </mat-hint>
           </mat-form-field>
           <mat-form-field style="margin-left:2%" class="input">
-            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required #Cpassword="ngModel" [(ngModel)]="model.cpassword">
+             <mat-hint *ngIf="Cpassword.invalid && (Cpassword.dirty || Cpassword.touched)">
+            
+              <mat-hint *ngIf="Cpassword.errors.required">
+                Password is required.
+              </mat-hint>
+             
+            </mat-hint>
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </mat-form-field>
 
@@ -41,10 +75,10 @@
           </div>
             
           <a routerLink="/login" >Signin if already have an account</a>
-          <button mat-button class="button" ng-click=signup()>signup</button>
+          <button mat-button class="button" (click)=signup() >signup</button>
         </div>
       </mat-card>
-      </form>
+       <!-- </form> -->
     </div>
 
     <div fxFlex.lg="30%" fxFlex.xl="10%" fxFlex.md="10%" fxFlex.sm="0%" fxFlex.xs="0%"></div>

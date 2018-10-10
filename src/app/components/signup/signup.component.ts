@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SignupService } from  '../../services/signup.service';
-import { log } from 'util';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-signup',
@@ -10,23 +10,12 @@ import { log } from 'util';
 export class SignupComponent implements OnInit {
 
   hide=true;
-  // Bclicked = false;
-  // Aclicked=false;
-  // clicked_basic(){
-
-  //   this.Bclicked=!this.Bclicked;
-  //   this.Aclicked=false;
-  // } 
   
-  // clicked_advance(){
-  //  this.Aclicked=!this.Aclicked;
-  //  this.Bclicked=false;
-  // }
   cards=[];
-  constructor(private _signupService: SignupService) { }
+  constructor(private _signupService: SignupService,
+              public snackbar:MatSnackBar) { }
 
   ngOnInit() {
-    // console.log("onINIt")
     let obs = this._signupService.getData("user/service");
    obs.subscribe((response)=>
    {
@@ -38,25 +27,62 @@ export class SignupComponent implements OnInit {
      }
      console.log("cards",this.cards)
   });
+   let obs1 = this._signupService.getData("user");
+   obs1.subscribe((response)=>
+   {
+     console.log(response)
+  });
   
   }
-  service:any;
-  model: any = {};
+  service;
+  model: any = {
+     "firstName": "",
+     "lastName": "",
+     "phoneNumber": "" ,
+     "service": "",
+     "createdDate": new Date(),
+     "modifiedDate": new Date(),
+     "username":"",
+     "email":"" ,
+     "emailVerified": true,
+     "password": "",
+  };
  signup(){
-  //  this._signupService.postData("user",{
-  //    "firstName": "string",
-  //    "lastName": "string",
-  //    "phoneNumber": "string" ,
-  //    "service": "string",
-  //    "createdDate": "2018-10-09T06:35:12.617Z",
-  //    "modifiedDate": "2018-10-09T06:35:12.617Z",
-  //    "username": "string",
-  //    "email": "string",
-  //    "emailVerified": true,
-  //    "password": "string"
-  //  })
-   console.log(JSON.stringify(this.model))
-   console.log(this.service)
+   if (this.model.firstName.length == 0 || this.model.lastName.length == 0 || this.model.email.length == 0 || this.model.password.length == 0 ||
+   this.service.length==0  ){
+     console.log("fill all the details")
+    
+     return;
+   }
+   else if(this.model.password!=this.model.cpassword){
+     console.log("give same password to confirm");
+        return;
+   }
+   console.log(this.service.length)
+   this._signupService.postData("user/userSignUp",{
+     "firstName": this.model.firstName,
+     "lastName": this.model.lastName,
+     "phoneNumber": "9493832445" ,
+     "service": this.service,
+     "createdDate": new Date(),
+     "modifiedDate": new Date(),
+     "username":this.model.email,
+     "email":this.model.email ,
+     "emailVerified": true,
+     "password": this.model.password,
+   }).subscribe(response=>{
+     console.log("signup succesfull")
+     this.snackbar.open("signup","sucess",{
+          duration:2000
+     })
+     console.log(response)
+   },
+     error => {
+       console.log("Error", error);
+       this.snackbar.open("signup", "failed",{
+            duration:2000
+       })
+     })
  }
  respond(card){
   console.log(card.name);
@@ -70,5 +96,5 @@ export class SignupComponent implements OnInit {
     this.cards[i].select=false;
   }
  }
-  
 }
+

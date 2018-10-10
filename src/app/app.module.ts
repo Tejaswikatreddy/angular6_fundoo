@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupService } from './services/signup.service';
 import { FormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FormsModule } from '@angular/forms';
     MatRadioModule,
     MatIconModule,
     FormsModule,
+    MatSnackBarModule,
     HttpClientModule
   ],
   providers: [
