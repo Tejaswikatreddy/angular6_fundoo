@@ -2,83 +2,94 @@
 
 <div fxLayout="column"  fxLayoutGap="10%">
   <div fxFlex.lg="10%" fxFlex.xl="10%" fxFlex.md="10%" fxFlex.sm="0%" fxFlex.xs="0%" ></div>
-  <div fxLayout="row" fxFlex.lg="80%" fxFlex.xl="80%" fxFlex.md="80%" fxFlex.sm="100%" fxFlex.xs="100%" >
+  <div fxLayout="row" fxFlex.lg="80%" fxFlex.xl="80%" fxFlex.md="80%" fxFlex.sm="100%" fxFlex.xs="100%"  >
     <div fxFlex.lg="30%" fxFlex.xl="10%" fxFlex.md="10%" fxFlex.sm="0%" fxFlex.xs="0%" ></div>
 
 
     <div fxFlex.lg="40%" fxFlex.xl="80%" fxFlex.md="80%" fxFlex.sm="100%" fxFlex.xs="100%">
-      <!-- <form name="form"> -->
+      <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
       <mat-card>
-        <div>
+        <div >
           <mat-card-title>Sign up</mat-card-title>
 
-          <mat-form-field class="input">
-            <input matInput placeholder="first name" name="firstname" [(ngModel)]="model.firstName" #firstName="ngModel" required>
-            <mat-hint *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+          <mat-form-field  >
+            <input matInput placeholder="first name" type="text" name="firstName" [(ngModel)]="model.firstName"  
+            [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }" #firstName="ngModel" required>
+            <mat-error *ngIf="f.submitted && firstName.invalid ">
             
-              <mat-hint *ngIf="firstName.errors.required">
+              <mat-error *ngIf="firstName.errors.required">
                first Name is required.
-              </mat-hint>
-            </mat-hint>
+              </mat-error>
+            </mat-error>
           </mat-form-field>
-          <mat-form-field class="input" style="margin-left:2%">
-            <input matInput placeholder="last name" name="lastname" [(ngModel)]="model.lastName" #lastName="ngModel" required>
-              <mat-hint *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+          <mat-form-field  style="margin-left:2%">
+            <input matInput  placeholder="last name" name="lastName" [(ngModel)]="model.lastName"  
+            [ngClass]="{ 'is-invalid': f.submitted && lastName.invalid }" #lastName="ngModel" required>
+              <mat-error *ngIf="f.submitted && lastName.invalid">
               
-                <mat-hint *ngIf="lastName.errors.required">
+                <mat-error *ngIf="lastName.errors.required">
                  last Name is required.
-                </mat-hint>
-              </mat-hint>
+                </mat-error>
+              </mat-error>
           </mat-form-field><br>
       
-          <mat-form-field style="width:80%">
-            <input matInput type="email" placeholder="email id" name="emailid" [(ngModel)]="model.email" class="form-control" #emailid="ngModel" required>
-            <mat-hint *ngIf="emailid.invalid && (emailid.dirty || emailid.touched)">
+          <mat-form-field style="width:80%" >
+            <input matInput type="email"  placeholder="email id" name="emailid" pattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
+            [(ngModel)]="model.email"  [ngClass]="{ 'is-invalid': f.submitted && emailid.invalid }"  #emailid="ngModel" required>
+            <mat-error *ngIf="f.submitted && emailid.invalid" >
               
-                <mat-hint *ngIf="emailid.errors.required">
-                 emailid is required.
-                </mat-hint>
-                 <mat-hint *ngIf="emailid.errors.email">
-                  valid emailid is required.
-                </mat-hint>
-              </mat-hint>
-          </mat-form-field><br>
-         
-          <mat-form-field class="input">
-            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="model.password"  #password="ngModel" required>
-            <mat-hint *ngIf="password.invalid && (password.dirty || password.touched)">
-            
-              <mat-hint *ngIf="password.errors.required">
-                Password is required.
-              </mat-hint>
-            </mat-hint>
+                <mat-error *ngIf="emailid.errors.required">
+                <mat-error>emailid is required.</mat-error>
+                </mat-error>
+                 <mat-error *ngIf="emailid.errors.pattern">
+                 <mat-error>valid emailid is required.</mat-error> 
+            </mat-error>
+            </mat-error>
           </mat-form-field>
-          <mat-form-field style="margin-left:2%" class="input">
-            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required #Cpassword="ngModel" [(ngModel)]="model.cpassword">
-             <mat-hint *ngIf="Cpassword.invalid && (Cpassword.dirty || Cpassword.touched)">
-            
-              <mat-hint *ngIf="Cpassword.errors.required">
+          <mat-form-field style="margin-left:2%">
+            <input matInput name="pass"  placeholder="Enter your password" [type]="hide ? 'password' : 'text'" #password="ngModel" 
+              [(ngModel)]="model.password"  [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required >
+            <mat-error *ngIf="f.submitted && password.invalid ">
+          
+              <mat-error *ngIf="password.errors.required">
                 Password is required.
-              </mat-hint>
+              </mat-error>
+      
+          
+            </mat-error>
+           
+          </mat-form-field>
+          <mat-form-field style="margin-left:2%">
+            <input matInput name="cpassword"   placeholder="Enter your password" 
+            [type]="hide ? 'password' : 'text'" required #Cpassword="ngModel" [(ngModel)]="model.cpassword"
+             [ngClass]="{ 'is-invalid': f.submitted && Cpassword.invalid }">
+             <!-- <mat-error *ngIf="(firstName.dirty || firstName.touched)">
+             <mat-error *ngIf="!checked ">password doesnt match</mat-error></mat-error> -->
+             <mat-error *ngIf="f.submitted && Cpassword.invalid ">
+              <mat-error *ngIf="Cpassword.errors.required">
+                Password is required.
+              </mat-error>
+              
              
-            </mat-hint>
+            </mat-error>
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </mat-form-field>
 
-          <div flexLayout="row" fxLayoutAlign="center" >
-            <div fxFlex.lg="50%"  *ngFor="let Card of cards" >
-              <mat-card matbutton (click)=respond(Card) [ngClass]="Card.select ? 'selected' : 'notselected'" style="height:45px" >
+          <div flexLayout="row" fxLayoutAlign="center" fxLayoutGap="5%">
+            <div fxFlex.lg="40%"  *ngFor="let Card of cards">
+              <mat-card matbutton (click)=respond(Card) [ngClass]="Card.select ? 'selected' : 'notselected'"
+               style="height:45px" >
                 <mat-card-title style="font-size:15px">{{Card.name}}</mat-card-title>
                 <mat-card-content style="font-size:10px">{{Card.description}}</mat-card-content>
               </mat-card>
             </div>
           </div>
             
-          <a routerLink="/login" >Signin if already have an account</a>
-          <button mat-button class="button" (click)=signup() >signup</button>
+          <a routerLink="" >Signin if already have an account</a>
+          <button mat-button class="button" (click)=signup()>signup</button>
         </div>
       </mat-card>
-       <!-- </form> -->
+       </form>
     </div>
 
     <div fxFlex.lg="30%" fxFlex.xl="10%" fxFlex.md="10%" fxFlex.sm="0%" fxFlex.xs="0%"></div>

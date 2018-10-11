@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SignupService } from  '../../services/signup.service';
+import { SignupService } from  '../../services/http.service';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -34,7 +34,7 @@ export class SignupComponent implements OnInit {
   });
   
   }
-  service;
+  service="";
   model: any = {
      "firstName": "",
      "lastName": "",
@@ -47,26 +47,30 @@ export class SignupComponent implements OnInit {
      "emailVerified": true,
      "password": "",
   };
+checked=false;
  signup(){
-   if (this.model.firstName.length == 0 || this.model.lastName.length == 0 || this.model.email.length == 0 || this.model.password.length == 0 ||
-   this.service.length==0  ){
+   console.log(this.service.length)
+   if (this.model.firstName.length == 0 || this.model.lastName.length == 0 || this.model.email.length == 0 || 
+    this.model.password.length == 0 || this.service.length==0  ){
      console.log("fill all the details")
-    
+     this.snackbar.open("fill in all the details", "signup failed", {
+       duration: 2000
+     })
      return;
    }
    else if(this.model.password!=this.model.cpassword){
      console.log("give same password to confirm");
+     this.checked=true;
+     this.snackbar.open("should give same password", "signup failed", {
+       duration: 2000
+     })
         return;
    }
    console.log(this.service.length)
    this._signupService.postData("user/userSignUp",{
      "firstName": this.model.firstName,
      "lastName": this.model.lastName,
-     "phoneNumber": "9493832445" ,
      "service": this.service,
-     "createdDate": new Date(),
-     "modifiedDate": new Date(),
-     "username":this.model.email,
      "email":this.model.email ,
      "emailVerified": true,
      "password": this.model.password,
@@ -89,6 +93,9 @@ export class SignupComponent implements OnInit {
   this.service=card.name;
 
   card.select=!card.select;
+  if(card.select==false){
+    this.service=""
+  }
   for(var i=0;i<this.cards.length;i++){
     if(card.name==this.cards[i].name){
       continue;

@@ -14,7 +14,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
-import { SignupService } from './services/signup.service';
+import { SignupService } from './services/http.service';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 

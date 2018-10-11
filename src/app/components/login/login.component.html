@@ -1,55 +1,49 @@
-<!-- <a routerLink="/login"></a> -->
-<div fxLayout="column" fxLayoutGap.lg=10% fxLayoutGap.md=10% fxLayoutGap.xl=10% fxLayoutGap.xs=20% fxLayoutGap.sm=20%>
-  <div fxFlex.lg=33% fxFlex.md=0 fxFlex.sm=0 fxFlex.xs=0></div>
-  <div fxLayout="row">
-    <div fxFlex.lg=40% fxFlex.md=0 fxFlex.xs=0 fxFlex.sm=0></div>
+<div fxLayout="column" fxLayoutGap="10%">
+  <div fxFlex.lg="10%" fxFlex.xl="0%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
+  <div fxLayout="row" fxFlex.lg="100%" fxFlex.xl="100%" fxFlex.md="100%" fxFlex.sm="100%" fxFlex.xs="100%">
+    <div fxFlex.lg="30%" fxFlex.xl="15%" fxFlex.md="15%" fxFlex.sm="15%" fxFlex.xs="0%"></div>
+
+
+    <div fxFlex.lg="40%" fxFlex.xl="70%" fxFlex.md="70%" fxFlex.sm="70%" fxFlex.xs="100%">
 
 
 
-    <mat-card>
-      <div style="padding:0px 60px  ">
-        <mat-card-title>Sign in</mat-card-title>
-
-        <p class="input_fields">
-          <mat-form-field>
-            <mat-label>email id</mat-label>
-            <input matInput placeholder="enter email id">
+    <mat-card >
+      <div >
+        <div>
+        <mat-card-title><i>Fundoo</i></mat-card-title>
+        <mat-card-subtitle>sign in</mat-card-subtitle>
+          </div>
+        
+          <mat-form-field class="input_fields">
+            <input matInput placeholder="Enter email id" [(ngModel)]="model.emailid">
           </mat-form-field>
 
-          
-        </p>
+          <br>
+        
 
-        <p class="input_fields">
-          <mat-form-field>
-            <mat-label>password</mat-label>
-            <input matInput placeholder="password">
+        
+          <mat-form-field class="input_fields">
+            <input matInput placeholder="Enter Password" [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="model.password" [(ngModel)]="model.password">
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </mat-form-field>
-        </p>
-        <p>
-          <a href="">forgot password?</a></p>
+        <br>
+        
+          <a href="">forgot password?</a>
 
         <div>
-
-          <table><tr><td style="text-align:left"><a routerLink="/signup" style="float:left">create an account..</a></td>
-                <td style="float:right"><button mat-button class="button">login</button></td></tr></table>
+          <a routerLink="/signup">create an account..</a>
+          <button mat-align="center" mat-button class="button" (click)=login()>login</button>
         </div>
       </div>
 
     </mat-card>
+    </div>
 
-    <div fxFlex.lg=0 fxFlex.xs=0 fxFlex.sm=0 fxFlex.md=0></div>
+    <div fxFlex.lg="30%" fxFlex.xl="15%" fxFlex.md="15%" fxFlex.sm="15%" fxFlex.xs="0%"></div>
   </div>
 
 
-  <div fxFlex.lg=33% fxLayoutGap.xs=0 fxFlex.sm=0></div>
+<div fxFlex.lg="10%" fxFlex.xl="0%" fxFlex.md="0%" fxFlex.sm="0%" fxFlex.xs="0%"></div>
 
 </div>
-<!-- <router-outlet></router-outlet> -->
-<!-- <div fxFlex.lg=20% fxFlex.xs=0 fxFlex.sm=20 ></div> -->
-<!-- <div fxFlex.lg=25%></div> -->
-
-
-
-<!-- fxFlex.xs=20% fxFlex.sm=20% fxFlex.md=20%
-    fxFlex.xs=30% fxFlex.sm=30% fxFlex.md=30%
-    fxFlex.xs=50% fxFlex.sm=50% fxFlex.md=50% -->
