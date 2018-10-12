@@ -17,3 +17,8 @@ a{
 .input{
     width:45%;
 }
+.header-image{
+    background-image: url('../../../assets/fundoo.jpg');
+  background-size: cover;
+  margin-left: 20%
+}

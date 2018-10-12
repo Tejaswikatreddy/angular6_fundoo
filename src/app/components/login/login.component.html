@@ -7,37 +7,66 @@
     <div fxFlex.lg="40%" fxFlex.xl="70%" fxFlex.md="70%" fxFlex.sm="70%" fxFlex.xs="100%">
 
 
+      <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
 
     <mat-card >
       <div >
         <div>
-        <mat-card-title><i>Fundoo</i></mat-card-title>
+        <mat-card-title><span style="color:darkcyan">F</span>
+        <span style="color:palevioletred">U</span>
+        <span style="color:rgb(11, 235, 235)">N</span>
+        <span style="color:rgb(124, 238, 153)">D</span>
+        <span style="color:rgb(244, 247, 118)">O</span>
+        <span style="color:darkcyan">O</span></mat-card-title>
         <mat-card-subtitle>sign in</mat-card-subtitle>
           </div>
         
-          <mat-form-field class="input_fields">
-            <input matInput placeholder="Enter email id" [(ngModel)]="model.emailid">
-          </mat-form-field>
+        <mat-form-field>
+          <input matInput type="email" placeholder="email id" name="emailid" 
+          pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            [(ngModel)]="model.email" [ngClass]="{ 'is-invalid': f.submitted && emailid.invalid }"
+            #emailid="ngModel" required>
+          <mat-error *ngIf="f.submitted && emailid.invalid">
+        
+            <mat-error *ngIf="emailid.errors.required">
+              <mat-error>emailid is required.</mat-error>
+            </mat-error>
+            <mat-error *ngIf="emailid.errors.pattern">
+              <mat-error>valid emailid is required.</mat-error>
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
 
           <br>
         
 
         
-          <mat-form-field class="input_fields">
-            <input matInput placeholder="Enter Password" [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="model.password" [(ngModel)]="model.password">
-              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-form-field style="margin-left:2%">
+            <input matInput name="pass" placeholder="Enter your password" [type]="hide ? 'password' : 'text'" #password="ngModel"
+              [(ngModel)]="model.password" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required>
+            <mat-error *ngIf="f.submitted && password.invalid ">
+          
+              <mat-error *ngIf="password.errors.required">
+                Password is required.
+              </mat-error>
+          
+          
+            </mat-error>
+                      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </mat-form-field>
         <br>
         
-          <a href="">forgot password?</a>
+         
 
         <div>
+          <a routerLink="/forgot">forgot password?</a> &nbsp;
           <a routerLink="/signup">create an account..</a>
           <button mat-align="center" mat-button class="button" (click)=login()>login</button>
         </div>
       </div>
 
     </mat-card>
+    </form>
     </div>
 
     <div fxFlex.lg="30%" fxFlex.xl="15%" fxFlex.md="15%" fxFlex.sm="15%" fxFlex.xs="0%"></div>

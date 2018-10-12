@@ -14,15 +14,21 @@ import { SignupComponent } from './components/signup/signup.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
-import { SignupService } from './services/http.service';
+import { httpService } from './services/http.service';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
       AppComponent,
     LoginComponent,
     SignupComponent,
+    ForgotPasswordComponent,
+    DashboardComponent,
+    ResetPasswordComponent,
    
   ],
   imports: [
@@ -41,7 +47,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     HttpClientModule
   ],
   providers: [
-    SignupService,
+    httpService,
   ],
   bootstrap: [AppComponent]
 })
