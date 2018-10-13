@@ -1,0 +1,12 @@
+.example-container {
+  position: absolute;
+  top: 57px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background: #eee;
+}
+.sidebar{
+    width:20%
+}

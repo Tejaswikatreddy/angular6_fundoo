@@ -1,0 +1,27 @@
+.sidenav-container {
+  height: 100%;
+}
+/* toolbar-single-row {
+    height: 82px;
+} */
+.sidenav {
+  width: 200px;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+   background: #fb0;
+  top: 0;
+  color: black
+}
+/* .mat-toolbar.mat-primary {
+   
+    /* color: #fff; */
+/* } */ 
+#icon{
+  
+  font-size: 25px
+}
+.input{
+  height:10px
+}

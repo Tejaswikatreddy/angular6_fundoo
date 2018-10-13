@@ -1,0 +1,42 @@
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+<button mat-button (click)=menuClicked()><i class="material-icons" id="icon">menu</i></button>    &nbsp;&nbsp;&nbsp;
+  <h1>Fundoo Keep</h1> 
+    
+    </mat-toolbar>  
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<app-dashboard [childMessage]="parentMessage"></app-dashboard>
+
+
+
+<!-- <mat-sidenav
+    <i class="material-icons" id="icon">search</i>
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
+    <!-- <mat-toolbar color="primary">Menu</mat-toolbar> -->
+
+<!-- </mat-sidenav> --> 
+
+
+<!-- <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <mat-nav-list>
+        <a mat-list-item href="#">Link 1</a>
+        <a mat-list-item href="#">Link 2</a>
+        <a mat-list-item href="#">Link 3</a>
+      </mat-nav-list>
+      <span>demo</span> -->

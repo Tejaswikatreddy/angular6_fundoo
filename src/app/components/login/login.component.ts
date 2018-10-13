@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       console.log("login succesfull")
       console.log(response["id"])
       this.id = response["id"];
-    localStorage.setItem("id",this.id)
+    // localStorage.setItem("id",this.id)
       this.snackbar.open('login', 'success', {
         duration: 2000,
       });
