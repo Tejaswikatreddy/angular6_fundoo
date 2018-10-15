@@ -1,42 +1,121 @@
-
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-<button mat-button (click)=menuClicked()><i class="material-icons" id="icon">menu</i></button>    &nbsp;&nbsp;&nbsp;
-  <h1>Fundoo Keep</h1> 
-    
-    </mat-toolbar>  
-    <!-- Add Content Here -->
-  </mat-sidenav-content>
-</mat-sidenav-container>
-
-<app-dashboard [childMessage]="parentMessage"></app-dashboard>
-
-
-
-<!-- <mat-sidenav
-    <i class="material-icons" id="icon">search</i>
-    #drawer
-    class="sidenav"
-    fixedInViewport="true"
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="!(isHandset$ | async)">
-    <!-- <mat-toolbar color="primary">Menu</mat-toolbar> -->
-
-<!-- </mat-sidenav> --> 
-
-
-<!-- <button
+  
+ <!-- <mat-toolbar color="primary">
+      
+      <button
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
+      <span class="fun">Fundoo Keep</span>
+      <div class="divnotselected" ><i class="material-icons">search</i>
+        <input type="text" placeholder="search" class="notselected" >
+      </div>
+      <i class="material-icons" id="refresh">refresh</i>
+      <i class="material-icons" id="viewStream">view_stream </i>
+      <i class="material-icons">view_module</i>
+      <i class="material-icons" id="notifications">notifications</i>
+    </mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'async'"
+    [opened]="(isHandset$ | async)"
+    style="margin-top:65px"> -->
+    <!-- <mat-toolbar color="primary">Menu</mat-toolbar> -->
+    <!-- <mat-nav-list >
+      <a mat-list-item href="">Link 1</a>
+      <a mat-list-item href="">Link 2</a>
+      <a mat-list-item href="">Link 3</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+   
+    <!- Add Content Here -->
+  <!-- </mat-sidenav-content> 
+</mat-sidenav-container> -->
+
+
+<div fxFlex>
+  <div fxLayout="column wrap">
+    <div>
+  <mat-toolbar color="primary" flexLayout="row" position="fixed">
+<div ngStyle.xs="padding-right:30px"ngStyle.md="padding-right:20px" ngStyle.sm="padding-right:20px" ngStyle.lg="padding-right:20px">
+  <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <span class="title">Fundoo Keep</span>
+</div>
+<div style="flex:1 1 auto">
+  <i class="material-icons">search</i>
+  <input type="text" placeholder="search" class="notselected">
+</div>
+<div fxLayout="row" fxFlex="1 1 auto" fxLayoutAlign="space around">
+<div ngStyle.lg="padding-right:10px" ngStyle.xl="padding-right:20px"> 
+  <i class="material-icons">refresh</i>
+</div>
+<div ngStyle.lg="padding-right:250px" ngStyle.xl="padding-right:500px">
+  <i class="material-icons">view_stream </i>
+</div>
+<div ngStyle.lg="padding-right:20px" ngStyle.xl="padding-right:30px">
+  <i class="material-icons">view_module</i>
+</div>
+<div ngStyle.lg="padding-right:20px" ngStyle.xl="padding-right:30px">
+  <i class="material-icons">notifications</i>
+
+</div>
+<div>
+  <i class="material-icons">account_circle </i>
+
+</div>
+</div>
+
+  </mat-toolbar>
+ 
+
+
+<!-- <div>
+  <mat-toolbar color="primary">
+    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <span class="title">Fundoo Keep</span>
+  <i class="material-icons">search</i>
+  <input type="text" placeholder="search" class="notselected">
+    <i class="material-icons" id="refresh">refresh</i>
+    <i class="material-icons" id="viewStream">view_stream </i>
+    <i class="material-icons">view_module</i>
+    <i class="material-icons" id="notifications">notifications</i>
+    <i class="material-icons">account_circle </i>
+  </mat-toolbar> -->
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async)" [position]="start">
       <mat-nav-list>
-        <a mat-list-item href="#">Link 1</a>
-        <a mat-list-item href="#">Link 2</a>
-        <a mat-list-item href="#">Link 3</a>
+                  <a mat-list-item href=""><img src="../../../assets/notes.svg"><span class="sideNotes">Notes</span></a>
+                  <a mat-list-item href="#"><img src="../../../assets/remainder.svg"><span class="sideNotes">Remainders</span></a>
+                  <hr>
+                  <a mat-list-item href="#"><img src="../../../assets/create.svg"><span class="sideNotes">Create Notes</span></a>
+                  <a mat-list-item href="#"><img src="../../../assets/archive.svg"><span class="sideNotes">Archive</span></a>
+                  <a mat-list-item href="#"><img src="../../../assets/trash.svg"><span class="sideNotes">Trash</span></a>
+                  <hr>
+                  <a mat-list-item href="#"><img src="../../../assets/settings.svg"><span class="sideNotes">Settings</span></a>
+                  <a mat-list-item href="#"><img src="../../../assets/sendFeedback.svg"><span class="sideNotes">Send Feedback</span></a>
+                  <a mat-list-item href="#"><img src="../../../assets/help.svg"><span class="sideNotes">Help</span></a>
+                  <a mat-list-item href="#"><img src="../../../assets/downloads.svg"><span class="sideNotes">App Downloads</span></a>
+                  <a mat-list-item href="#"><img src="../../../assets/shortcut.svg"><span class="sideNotes">KeyBoard Shortcuts</span></a>
       </mat-nav-list>
-      <span>demo</span> -->
+    </mat-sidenav>
+    <mat-sidenav-content style="position:fixed">
+      <router-outlet name="sidebar"></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+</div>
+</div>

@@ -9,16 +9,6 @@ export class DashboardComponent implements OnInit {
 click;
   constructor() { }
   @Input() childMessage: boolean;
-  ngOnInit() {
-   
-  }
-  clicked(){
-    console.log(this.childMessage)
-    if (this.childMessage == true) {
-      this.click = true;
-      return this.click
-    }
-    return false;
-  }
- 
+  ngOnInit() { 
+}
 }

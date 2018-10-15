@@ -16,9 +16,12 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'signup', component: SignupComponent},
   { path: 'forgot', component: ForgotPasswordComponent},
-  { path: 'dashboard', component: DashboardComponent ,children:[
-    {path:'',component:NavbarComponent  },
-    {path:'',component:SidebarComponent,outlet:"sidebar"}]},
+  {
+    path: 'navbar', component: NavbarComponent ,children:[
+    {path:'',component:SidebarComponent ,outlet:"sidebar" },
+    {path:'',component:DashboardComponent,outlet:"dashboard"}
+    
+  ]},
   {path:"resetpassword/:forgotToken",component:ResetPasswordComponent},
  
 

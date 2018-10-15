@@ -9,16 +9,16 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  parentMessage=false;
-  // isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-  //   .pipe(
-  //     map(result => result.matches)
-  //   );
+clicked;
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches)
+    );
     
   constructor(private breakpointObserver: BreakpointObserver) {}
-  menuClicked(){
-    console.log("clicked")
-    this.parentMessage=!this.parentMessage;
-    console.log("navabar message",this.parentMessage)
+  
+  color(){
+    this.clicked=true;
+
   }
   }
