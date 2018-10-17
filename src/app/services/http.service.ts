@@ -1,39 +1,25 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import * as $ from 'jquery';
 
-// import {Observable} from 'rxjs/Observable'
 @Injectable({
   providedIn: 'root'
 })
+export class HttpService {
 
-export class httpService {
- URL = "http://34.213.106.173/api";
-  constructor(private http: HttpClient) { }
-  getData(name){
-    return this.http.get(this.URL+"/"+name);
-  }
-  postData(name,body){
-    console.log(body)
-    return this.http.post(this.URL+"/"+name,body);
-  }
-  post(name,input,access_token){
-    console.log(input);
-    console.log(access_token)
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': access_token
+  constructor() { }
+  post(data){
+    console.log("service function")
+    $.ajax({
+      url: "http://34.213.106.173/api/user/adminLogin",
+      type: "POST",
+      data: data,
+      dataType: "json",
+      contentType: "application/json"
+    })
+      .done(function (data) {
+        console.log("Response " + JSON.stringify(data));
       })
-    };
-    return this.http.post(this.URL+"/"+name,this.getFormUrlEncoded(input),httpOptions)
   }
-  getFormUrlEncoded(toConvert) {
-    const formBody = [];
-    for (const property in toConvert) {
-      const encodedKey = encodeURIComponent(property);
-      const encodedValue = encodeURIComponent(toConvert[property]);
-      formBody.push(encodedKey + '=' + encodedValue);
-    }
-    return formBody.join('&');
+   
   }
-}
+

@@ -1,54 +1,66 @@
 import { Component, OnInit } from '@angular/core';
-import { httpService } from '../../services/http.service';
-import { MatSnackBar } from '@angular/material';
+import * as $ from 'jquery';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  model:any={
-    "email": "",
-    "password":""
-  };
-  hide=true;
-  id;
-  constructor(private _signupService: httpService,
-    public snackbar: MatSnackBar,
-    public router:Router) { }
 
+  constructor() { }
+  data:any={}
   ngOnInit() {
-  
+    $(document).ready(function () {
+      $("#btn").click(function () {
+        
+        var email=$('#email').val();
+        var password=$('#password').val();
+        var indexat = email.indexOf("@");
+        var indexdot = email.indexOf(".");
+      if(email==""){
+        
+        $('#email').focus(); 
+       $("#emailLabel").text("enter email id");
+       return false;
+      }
+      else if (password == "" ){
+        $("#password").focus();
+        $("#passwordLabel").text("enter password");
+        return false;
+      }
+      else if (indexat < 1 || (indexdot - indexat) < 2){
+       
+        $("#email").focus();
+        $("#emailLabel").text("enter valid email id");
+        return false;
+      }
+        $.ajax({
+          url: "http://34.213.106.173/api/user/adminLogin",
+          type: "POST",
+          data: {
+            "email": email,
+            "password": password
+          },
+          dataType: "json",
+          success:function(response){
+            if(response){
+              console.log(response)
+              console.log(response.id)
+
+              localStorage.setItem("token",response.id)
+              window.location.href = "/dashboard"   
+              
+            }
+           
+          }
+        })
+        return false;
+       
+      });
+    });
   }
 
-  login(){
-    if(this.model.email.length==0 || this.model.password.length==0){
-      console.log("fill all the details")
-      this.snackbar.open("fill in all the details", "signup failed", {
-        duration: 2000
-      })
-      return;
-    }
-    this._signupService.postData("user/login", {
-      "email": this.model.email,
-      "password": this.model.password
-    }).subscribe(response => {
-      console.log("login succesfull")
-      console.log(response["id"])
-      this.id = response["id"];
-    // localStorage.setItem("id",this.id)
-      this.snackbar.open('login', 'success', {
-        duration: 2000,
-      });
-      this.router.navigate(['\dashboard'])
-    },
-      error => {
-        console.log("Error", error);
-        this.snackbar.open('login', 'failed', {
-          duration: 2000,
-        });
-      })
-  }
+ 
 }
