@@ -12,6 +12,9 @@ export class LoginComponent implements OnInit {
   constructor() { }
   data:any={}
   ngOnInit() {
+    if(localStorage.getItem("token")){
+      window.location.href="/dashboard"
+    }
     $(document).ready(function () {
       $("#btn").click(function () {
         
@@ -54,7 +57,13 @@ export class LoginComponent implements OnInit {
               
             }
            
+          },error:function(err){
+            if(err){
+              console.log(err)
+              alert("something went wrong enter the details again")
+            }
           }
+          
         })
         return false;
        
