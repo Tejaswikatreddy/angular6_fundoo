@@ -1,121 +1,81 @@
-  
- <!-- <mat-toolbar color="primary">
-      
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span class="fun">Fundoo Keep</span>
-      <div class="divnotselected" ><i class="material-icons">search</i>
-        <input type="text" placeholder="search" class="notselected" >
-      </div>
-      <i class="material-icons" id="refresh">refresh</i>
-      <i class="material-icons" id="viewStream">view_stream </i>
-      <i class="material-icons">view_module</i>
-      <i class="material-icons" id="notifications">notifications</i>
-    </mat-toolbar>
-
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    #drawer
-    class="sidenav"
-    fixedInViewport="true"
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'async'"
-    [opened]="(isHandset$ | async)"
-    style="margin-top:65px"> -->
-    <!-- <mat-toolbar color="primary">Menu</mat-toolbar> -->
-    <!-- <mat-nav-list >
-      <a mat-list-item href="">Link 1</a>
-      <a mat-list-item href="">Link 2</a>
-      <a mat-list-item href="">Link 3</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-
-   
-    <!- Add Content Here -->
-  <!-- </mat-sidenav-content> 
-</mat-sidenav-container> -->
-
-
 <div fxFlex>
   <div fxLayout="column wrap">
-    <div>
-  <mat-toolbar color="primary" flexLayout="row" position="fixed">
-<div ngStyle.xs="padding-right:30px"ngStyle.md="padding-right:20px" ngStyle.sm="padding-right:20px" ngStyle.lg="padding-right:20px">
-  <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
-    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-  </button>
-  <span class="title">Fundoo Keep</span>
-</div>
-<div style="flex:1 1 auto">
-  <i class="material-icons">search</i>
-  <input type="text" placeholder="search" class="notselected">
-</div>
-<div fxLayout="row" fxFlex="1 1 auto" fxLayoutAlign="space around">
-<div ngStyle.lg="padding-right:10px" ngStyle.xl="padding-right:20px"> 
-  <i class="material-icons">refresh</i>
-</div>
-<div ngStyle.lg="padding-right:250px" ngStyle.xl="padding-right:500px">
-  <i class="material-icons">view_stream </i>
-</div>
-<div ngStyle.lg="padding-right:20px" ngStyle.xl="padding-right:30px">
-  <i class="material-icons">view_module</i>
-</div>
-<div ngStyle.lg="padding-right:20px" ngStyle.xl="padding-right:30px">
-  <i class="material-icons">notifications</i>
+        <mat-toolbar color="primary" flexLayout="column" position="fixed">
+        <!-- <div ngStyle.xs="padding-right:0px" ngStyle.md="padding-right:20px" ngStyle.sm="padding-right:20px" 
+        ngStyle.lg="padding-right:20px" ngStyle.xl="padding-right:20px"> -->
+          <div>
+          <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+          </button>
+        </div>
+        <div fxHide.xs="true">
+          <span>Fundoo</span>
+        </div>
+        <div ngStyle.xs="font-size:40px,padding-left:0px">
+          <span>Keep</span>
+        </div>
 
-</div>
-<div>
-  <i class="material-icons">account_circle </i>
+        <!-- <div ngStyle.xs="flex:1 1 auto" ngStyle.sm="flex:1 1 auto" ngStyle.xl="padding-left:50px" ngStyle.lg="padding-left:50px;padding-right:30px"
+          ngStyle.md="padding-left:50px;padding-right:30px" flexLayout="row"> -->
+          <div ngStyle.xs="flex:1 1 auto" ngStyle.sm="flex:1 1 auto" flexLayout="column">
+          <div ngStyle.xs="float:right;" ngStyle.lg="display:inline" ngStyle.xl="display:inline" ngStyle.md="display:inline"
+            ngStyle.sm="float:right">
+            <button type="button" mat-icon-button> <mat-icon>search</mat-icon> </button>
+          </div>
+          <div ngStyle.xs="visibility:collapse" ngStyle.lg="display:inline" ngStyle.xl="display:inline" ngStyle.md="display:inline"
+            ngStyle.sm="visibility:collapse">
+            <input type="text" placeholder="search" class="notselected">
+          </div>
+        </div>
+     
 
-</div>
-</div>
+        <!-- <div ngStyle.lg="padding-right:200px" ngStyle.md="padding-right:200px" ngStyle.xl="padding-right:250px"
+          ngStyle.xs="float:right"> -->
+          <div>
+        <button type="button" mat-icon-button>
+          <mat-icon>refresh</mat-icon>
+        </button>
+        </div>
+        <div ngStyle.lg="padding-right:20px" ngStyle.xl="padding-right:30px" fxHide.xs="true" fxHide.sm="true">
+      <button type="button" mat-icon-button>
+        <mat-icon>view_agenda</mat-icon>
+      </button>
+        </div>
+        <div ngStyle.xs="padding-left:0px">
+          
+        <button type="button" mat-icon-button>
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        </div>
+      </mat-toolbar>
+    
+      <mat-sidenav-container class="sidenav-container">
+        <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+          [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async)" [position]="start">
+          <mat-nav-list>
+            <a mat-list-item href=""><img src="../../../assets/notes.svg"><span class="sideNotes">Notes</span></a>
+            <a mat-list-item href="#"><img src="../../../assets/remainder.svg"><span class="sideNotes">Remainders</span></a>
+            <hr>
+            <p>Labels
+              <button mat-button style="float: right;padding-top: 0px">EDIT</button>
+            </p>
 
-  </mat-toolbar>
- 
+            <a mat-list-item href="#"><img src="../../../assets/create.svg"><span class="sideNotes">Create Notes</span></a>
+            <a mat-list-item href="#"><img src="../../../assets/archive.svg"><span class="sideNotes">Archive</span></a>
+            <a mat-list-item href="#"><img src="../../../assets/trash.svg"><span class="sideNotes">Trash</span></a>
+            <hr>
+            <a mat-list-item href="#"><img src="../../../assets/settings.svg"><span class="sideNotes">Settings</span></a>
+            <a mat-list-item href="#"><img src="../../../assets/sendFeedback.svg"><span class="sideNotes">Send Feedback</span></a>
+            <a mat-list-item href="#"><img src="../../../assets/help.svg"><span class="sideNotes">Help</span></a>
+            <a mat-list-item href="#"><img src="../../../assets/downloads.svg"><span class="sideNotes">App Downloads</span></a>
+            <a mat-list-item href="#"><img src="../../../assets/shortcut.svg"><span class="sideNotes">KeyBoard
+                Shortcuts</span></a>
+          </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content style="position:fixed">
 
-
-<!-- <div>
-  <mat-toolbar color="primary">
-    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
-      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-    </button>
-    <span class="title">Fundoo Keep</span>
-  <i class="material-icons">search</i>
-  <input type="text" placeholder="search" class="notselected">
-    <i class="material-icons" id="refresh">refresh</i>
-    <i class="material-icons" id="viewStream">view_stream </i>
-    <i class="material-icons">view_module</i>
-    <i class="material-icons" id="notifications">notifications</i>
-    <i class="material-icons">account_circle </i>
-  </mat-toolbar> -->
-  <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async)" [position]="start">
-      <mat-nav-list>
-                  <a mat-list-item href=""><img src="../../../assets/notes.svg"><span class="sideNotes">Notes</span></a>
-                  <a mat-list-item href="#"><img src="../../../assets/remainder.svg"><span class="sideNotes">Remainders</span></a>
-                  <hr>
-                  <a mat-list-item href="#"><img src="../../../assets/create.svg"><span class="sideNotes">Create Notes</span></a>
-                  <a mat-list-item href="#"><img src="../../../assets/archive.svg"><span class="sideNotes">Archive</span></a>
-                  <a mat-list-item href="#"><img src="../../../assets/trash.svg"><span class="sideNotes">Trash</span></a>
-                  <hr>
-                  <a mat-list-item href="#"><img src="../../../assets/settings.svg"><span class="sideNotes">Settings</span></a>
-                  <a mat-list-item href="#"><img src="../../../assets/sendFeedback.svg"><span class="sideNotes">Send Feedback</span></a>
-                  <a mat-list-item href="#"><img src="../../../assets/help.svg"><span class="sideNotes">Help</span></a>
-                  <a mat-list-item href="#"><img src="../../../assets/downloads.svg"><span class="sideNotes">App Downloads</span></a>
-                  <a mat-list-item href="#"><img src="../../../assets/shortcut.svg"><span class="sideNotes">KeyBoard Shortcuts</span></a>
-      </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content style="position:fixed">
-      <router-outlet name="sidebar"></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-</div>
-</div>
-</div>
+          <router-outlet name="sidebar"></router-outlet>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+    </div>
+    </div>
