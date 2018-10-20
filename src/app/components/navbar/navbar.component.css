@@ -18,27 +18,27 @@
 }
 .mat-toolbar.mat-primary {
   background:#fb0 ;  
-  color: black
+  color: black;
+  width:100%;
 }
 .notselected{
     width: 650px;
-  height: 25px;
-  background-color:transparent;
-  /* border-width: 0px
-   */
-   padding-left: 0%;
-     border:5px solid transparent;
-  /* margin-bottom: 10px; */
-
-
+  height: 40px;
+  background-color:#e4a700;
+  border:none;
+  font-size: 20px
 }
+
 
 .divnotselected{
    border:5px solid #fb0;
   background-color: #fb0;
-    height: 20px;
-    padding-right:5%
+   height:100%
+    
 
+}
+input:focus { 
+    background-color: white;
 }
 .material-icons {
     font-family: 'Material Icons';
@@ -55,6 +55,10 @@
     /* -webkit-font-feature-settings: 'liga'; */
     -webkit-font-smoothing: antialiased;
     opacity: 0.5;
+}
+.svg{
+      opacity: 0.5;
+
 }
  .title{
   padding-left: 10%;
@@ -78,4 +82,12 @@
 }
 .sideNotes{
   padding-left: 10px
+}
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+.mat-menu-content{
+    padding-top: 0px;
+    padding-bottom: 1px;
 }

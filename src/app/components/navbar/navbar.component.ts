@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-clicked;
+public clicked=false;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -17,8 +17,5 @@ clicked;
     
   constructor(private breakpointObserver: BreakpointObserver) {}
   
-  color(){
-    this.clicked=true;
-
-  }
+ 
   }

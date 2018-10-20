@@ -1,74 +1,74 @@
 <div fxFlex>
   <div fxLayout="column wrap">
-        <mat-toolbar color="primary" flexLayout="column" position="fixed">
-        <!-- <div ngStyle.xs="padding-right:0px" ngStyle.md="padding-right:20px" ngStyle.sm="padding-right:20px" 
-        ngStyle.lg="padding-right:20px" ngStyle.xl="padding-right:20px"> -->
-          <div>
-          <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-toolbar color="primary" position="fixed" style="overflow-x: hidden">
+      <div fxFlex.xl="20%" fxFlex.lg="20%" fxFlex.md="20%" fxFlex.sm="30%" fxFlex.xs="40%">
+        <div fxFlex=40%>
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" 
+            ngStyle.md="float:left">
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
           </button>
         </div>
-        <div fxHide.xs="true">
-          <span>Fundoo</span>
+        <div fxFlex=60% fxFlex >
+                <div fxFlex=60% fxHide.xs="true"><span>Fundoo Keep</span></div>
+                <div fxFlex=40% fxHide.xl="true" fxHide.lg="true" fxHide.md="true" fxHide.sm="true"style="float:right"><span>Keep</span></div>
         </div>
-        <div ngStyle.xs="font-size:40px,padding-left:0px">
-          <span>Keep</span>
-        </div>
+      </div>
+      
 
-        <!-- <div ngStyle.xs="flex:1 1 auto" ngStyle.sm="flex:1 1 auto" ngStyle.xl="padding-left:50px" ngStyle.lg="padding-left:50px;padding-right:30px"
-          ngStyle.md="padding-left:50px;padding-right:30px" flexLayout="row"> -->
-          <div ngStyle.xs="flex:1 1 auto" ngStyle.sm="flex:1 1 auto" flexLayout="column">
+     <div fxFlex.xl="60%" fxFlex.lg="60%" fxFlex.md="60%" fxFlex.sm="20%" fxFlex.xs="20%"ngStyle.xs="flex:1 1 auto" ngStyle.xl="padding-left:50px"
+      ngStyle.lg="padding-left:50px;padding-right:30px" ngStyle.md="padding-left:50px;padding-right:30px" flexLayout="row">
           <div ngStyle.xs="float:right;" ngStyle.lg="display:inline" ngStyle.xl="display:inline" ngStyle.md="display:inline"
-            ngStyle.sm="float:right">
-            <button type="button" mat-icon-button> <mat-icon>search</mat-icon> </button>
+            ngStyle.sm="float:left">
+            <button type="button" mat-icon-button style="position:absolute">  <mat-icon>search</mat-icon> </button>
           </div>
           <div ngStyle.xs="visibility:collapse" ngStyle.lg="display:inline" ngStyle.xl="display:inline" ngStyle.md="display:inline"
-            ngStyle.sm="visibility:collapse">
-            <input type="text" placeholder="search" class="notselected">
+            ngStyle.sm="visibility:collapse" >
+            <input type="text" placeholder="Search" class="notselected" style="padding-left:5%">
           </div>
         </div>
      
-
-        <!-- <div ngStyle.lg="padding-right:200px" ngStyle.md="padding-right:200px" ngStyle.xl="padding-right:250px"
-          ngStyle.xs="float:right"> -->
+        <div fxFlex.xl="20%" fxFlex.lg="20%" fxFlex.md="20%" fxFlex.sm="40%" fxFlex.xs="40%">
+          <div fxFlex="60%">
+          <button type="button" mat-icon-button style="float:right"><mat-icon>refresh</mat-icon></button></div>
+          <div fxFlex="20%" >
+          <button type="button" mat-icon-button style="float:right"><mat-icon>view_agenda</mat-icon></button></div>
+          <div fxFlex="20%">
+          <button mat-icon-button   (click)="clicked=!clicked" style="margin-right:100px"><mat-icon>account_circle</mat-icon></button></div>
           <div>
-        <button type="button" mat-icon-button>
-          <mat-icon>refresh</mat-icon>
-        </button>
-        </div>
-        <div ngStyle.lg="padding-right:20px" ngStyle.xl="padding-right:30px" fxHide.xs="true" fxHide.sm="true">
-      <button type="button" mat-icon-button>
-        <mat-icon>view_agenda</mat-icon>
-      </button>
-        </div>
-        <div ngStyle.xs="padding-left:0px">
-          
-        <button type="button" mat-icon-button>
-          <mat-icon>account_circle</mat-icon>
-        </button>
-        </div>
+          <mat-card style="position:absolute" *ngIf(clicked)>
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Shiba Inu</mat-card-title>
+            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+
       </mat-toolbar>
     
       <mat-sidenav-container class="sidenav-container">
         <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
           [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async)" [position]="start">
           <mat-nav-list>
-            <a mat-list-item href=""><img src="../../../assets/notes.svg"><span class="sideNotes">Notes</span></a>
-            <a mat-list-item href="#"><img src="../../../assets/remainder.svg"><span class="sideNotes">Remainders</span></a>
+            <a mat-list-item href=""><img src="../../../assets/notes.svg" class="svg"><span class="sideNotes">Notes</span></a>
+            <a mat-list-item href="#"><img src="../../../assets/remainder.svg" class="svg"><span class="sideNotes">Remainders</span></a>
             <hr>
-            <p>Labels
-              <button mat-button style="float: right;padding-top: 0px">EDIT</button>
-            </p>
+            <p>Labels<button mat-button style="margin-left:20%">EDIT</button></p>
 
-            <a mat-list-item href="#"><img src="../../../assets/create.svg"><span class="sideNotes">Create Notes</span></a>
-            <a mat-list-item href="#"><img src="../../../assets/archive.svg"><span class="sideNotes">Archive</span></a>
-            <a mat-list-item href="#"><img src="../../../assets/trash.svg"><span class="sideNotes">Trash</span></a>
+            <a mat-list-item href="#"><img src="../../../assets/create.svg" class="svg"><span class="sideNotes">Create Notes</span></a>
+            <a mat-list-item href="#"><img src="../../../assets/archive.svg" class="svg"><span class="sideNotes">Archive</span></a>
+            <a mat-list-item href="#"><img src="../../../assets/trash.svg" class="svg"><span class="sideNotes">Trash</span></a>
             <hr>
-            <a mat-list-item href="#"><img src="../../../assets/settings.svg"><span class="sideNotes">Settings</span></a>
-            <a mat-list-item href="#"><img src="../../../assets/sendFeedback.svg"><span class="sideNotes">Send Feedback</span></a>
-            <a mat-list-item href="#"><img src="../../../assets/help.svg"><span class="sideNotes">Help</span></a>
-            <a mat-list-item href="#"><img src="../../../assets/downloads.svg"><span class="sideNotes">App Downloads</span></a>
-            <a mat-list-item href="#"><img src="../../../assets/shortcut.svg"><span class="sideNotes">KeyBoard
+            <a mat-list-item href="#"><img src="../../../assets/settings.svg" class="svg"><span class="sideNotes">Settings</span></a>
+            <a mat-list-item href="#"><img src="../../../assets/sendFeedback.svg" class="svg"><span class="sideNotes">Send Feedback</span></a>
+            <a mat-list-item href="#"><img src="../../../assets/help.svg" class="svg"><span class="sideNotes">Help</span></a>
+            <a mat-list-item href="#"><img src="../../../assets/downloads.svg" class="svg"><span class="sideNotes">App Downloads</span></a>
+            <a mat-list-item href="#"><img src="../../../assets/shortcut.svg" class="svg"><span class="sideNotes">KeyBoard
                 Shortcuts</span></a>
           </mat-nav-list>
         </mat-sidenav>
