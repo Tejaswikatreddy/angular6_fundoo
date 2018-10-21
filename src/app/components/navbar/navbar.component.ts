@@ -16,6 +16,12 @@ public clicked=false;
     );
     
   constructor(private breakpointObserver: BreakpointObserver) {}
+//   clicked(){
+//     console.log("clicked method")
+//  this.flag=true;
+//  console.log(this.flag)
+//  return this.flag;
+//   }
   
  
   }

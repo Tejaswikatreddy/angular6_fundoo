@@ -2,6 +2,7 @@
   <mat-sidenav mode="side" opened class="sidebar">Sidenav content</mat-sidenav>
   <! <mat-sidenav-content>Main content</mat-sidenav-content> -->
 <!-- </mat-sidenav-container> --> 
+    <!-- <p>welocme to google</p>
     <p>welocme to google</p>
     <p>welocme to google</p>
     <p>welocme to google</p>
@@ -13,6 +14,38 @@
     <p>welocme to google</p>
     <p>welocme to google</p>
     <p>welocme to google</p>
-    <p>welocme to google</p>
-    <p>welocme to google</p>
-    
+    <p>welocme to google</p> -->
+    <div *ngIf="!clicked">
+  <mat-card class="example-card" style="padding:0px;width:150%">
+    <mat-card-header>
+    <input type="text" class="note" placeholder="Take a note.." style="margin-top:2%;flex:1 1 auto" (click)="clicked=true">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <p><mat-icon>list</mat-icon>&nbsp;&nbsp;&nbsp;&nbsp;
+        <mat-icon>photo</mat-icon>&nbsp;&nbsp;&nbsp;&nbsp;
+      <mat-icon>list</mat-icon>&nbsp;&nbsp;</p>
+    </mat-card-header>
+  
+  </mat-card>
+    </div>
+    <div *ngIf="clicked">
+      <mat-card class="example-card" style="padding:0px;width:150%">
+        <mat-card-header><div fxFlex style="padding:20px 2px 3px 2px">
+          <div fxFlex="80%"><b style="float:left">Title</b> </div>
+           <div fxFlex="20%"> <mat-icon>photo</mat-icon> </div>
+        </div>
+        </mat-card-header>
+        <mat-card-content>
+          <input type="text" class="note" placeholder="Take a note" style="margin-top:2%;flex:1 1 auto" (click)="clicked=!clicked">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </mat-card-content>
+          <mat-card-footer>
+            <p>
+              <mat-icon>list</mat-icon>&nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-icon>photo</mat-icon>&nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-icon>list</mat-icon>&nbsp;&nbsp;
+            </p>
+          </mat-card-footer>
+         
+         
+      </mat-card>
+    </div>

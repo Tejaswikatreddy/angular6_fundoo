@@ -10,7 +10,7 @@
         </div>
         <div fxFlex=60% fxFlex >
                 <div fxFlex=60% fxHide.xs="true"><span>Fundoo Keep</span></div>
-                <div fxFlex=40% fxHide.xl="true" fxHide.lg="true" fxHide.md="true" fxHide.sm="true"style="float:right"><span>Keep</span></div>
+                <div fxFlex=40% fxHide.xl="true" fxHide.lg="true" fxHide.md="true" fxHide.sm="true"><span>Keep</span></div>
         </div>
       </div>
       
@@ -18,7 +18,7 @@
      <div fxFlex.xl="60%" fxFlex.lg="60%" fxFlex.md="60%" fxFlex.sm="20%" fxFlex.xs="20%"ngStyle.xs="flex:1 1 auto" ngStyle.xl="padding-left:50px"
       ngStyle.lg="padding-left:50px;padding-right:30px" ngStyle.md="padding-left:50px;padding-right:30px" flexLayout="row">
           <div ngStyle.xs="float:right;" ngStyle.lg="display:inline" ngStyle.xl="display:inline" ngStyle.md="display:inline"
-            ngStyle.sm="float:left">
+            ngStyle.sm="float:right">
             <button type="button" mat-icon-button style="position:absolute">  <mat-icon>search</mat-icon> </button>
           </div>
           <div ngStyle.xs="visibility:collapse" ngStyle.lg="display:inline" ngStyle.xl="display:inline" ngStyle.md="display:inline"
@@ -31,29 +31,19 @@
           <div fxFlex="60%">
           <button type="button" mat-icon-button style="float:right"><mat-icon>refresh</mat-icon></button></div>
           <div fxFlex="20%" >
-          <button type="button" mat-icon-button style="float:right"><mat-icon>view_agenda</mat-icon></button></div>
+          <button type="button" mat-icon-button style="float:right" ngStyle.xs="visibility:collapse"><mat-icon>view_agenda</mat-icon></button></div>
           <div fxFlex="20%">
-          <button mat-icon-button   (click)="clicked=!clicked" style="margin-right:100px"><mat-icon>account_circle</mat-icon></button></div>
-          <div>
-          <mat-card style="position:absolute" *ngIf(clicked)>
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Shiba Inu</mat-card-title>
-            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-    </div>
-
-      </mat-toolbar>
+          <button mat-icon-button   (click)="clicked=!clicked" style="margin-right:100px"><mat-icon>account_circle</mat-icon></button>
+        
+    
+          </div>
+          </div>
+          </mat-toolbar>
+     
     
       <mat-sidenav-container class="sidenav-container">
         <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-          [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async)" [position]="start">
+          [mode]="(isHandset$ | async) ? 'over' : 'side'"  [position]="start">
           <mat-nav-list>
             <a mat-list-item href=""><img src="../../../assets/notes.svg" class="svg"><span class="sideNotes">Notes</span></a>
             <a mat-list-item href="#"><img src="../../../assets/remainder.svg" class="svg"><span class="sideNotes">Remainders</span></a>
@@ -72,9 +62,34 @@
                 Shortcuts</span></a>
           </mat-nav-list>
         </mat-sidenav>
-        <mat-sidenav-content style="position:fixed">
-
-          <router-outlet name="sidebar"></router-outlet>
+        <mat-sidenav-content style="position:fixed;width: 100%">
+          <!-- <md-sidenav-layout fullscreen> -->
+              <div fxLayout="row" fxLayoutAlign="center center">
+                    <div style="margin-top:3%">
+                      <router-outlet name="sidebar"></router-outlet>
+                    </div>
+                  <div>
+                    <mat-card style="position:absolute;padding: 5 px" *ngIf="clicked">
+                      <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>Tejaswi Katreddy</mat-card-title>
+                        <mat-card-subtitle>tejaswikatreddy10@gmail.com</mat-card-subtitle>
+                      </mat-card-header>
+                      
+                      <mat-card-content>
+                          <button mat-raised-button color="primary">Google Account</button>
+                      </mat-card-content>
+                      <hr>
+                      <mat-card-actions>
+                        <button mat-stroked-button>Add Account</button>&nbsp;&nbsp;&nbsp;
+                        <button mat-stroked-button>Logout</button>
+                      </mat-card-actions>
+                    </mat-card>
+                  </div>
+             
+                    
+              </div>
+              <!-- </md-sidenav-layout> -->
         </mat-sidenav-content>
       </mat-sidenav-container>
     </div>

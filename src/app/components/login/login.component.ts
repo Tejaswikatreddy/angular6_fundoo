@@ -36,13 +36,13 @@ export class LoginComponent implements OnInit {
       "password": this.model.password
     }).subscribe(response => {
       console.log("login succesfull")
-      console.log(response["id"])
+      console.log(response)
       this.id = response["id"];
     // localStorage.setItem("id",this.id)
       this.snackbar.open('login', 'success', {
         duration: 2000,
       });
-      this.router.navigate(['\dashboard'])
+      this.router.navigate(['navbar'])
     },
       error => {
         console.log("Error", error);

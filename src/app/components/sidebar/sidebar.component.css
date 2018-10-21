@@ -10,3 +10,13 @@
 .sidebar{
     width:20%
 }
+.note{
+    width: 50%;
+  height: 40px;
+  border:none;
+
+}
+.material-icons {
+    
+    opacity: 0.5;
+}

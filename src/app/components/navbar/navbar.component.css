@@ -91,3 +91,7 @@ input:focus {
     padding-top: 0px;
     padding-bottom: 1px;
 }
+.md-sidenav-layout.my-sidenav-layout .md-sidenav-content 
+{ 
+  width: 100%; 
+}
