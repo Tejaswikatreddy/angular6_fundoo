@@ -1,4 +1,4 @@
-.example-container {
+/* .example-container {
   position: absolute;
   top: 57px;
   bottom: 0;
@@ -6,17 +6,44 @@
   right: 0;
 
   background: #eee;
-}
-.sidebar{
-    width:20%
-}
+} */
+
 .note{
-    width: 50%;
-  height: 40px;
+    width: 100%;
+  height: auto;
   border:none;
+  /* border-color: transparent; */
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 15px;
+  
+  
+  outline: none
 
 }
 .material-icons {
-    
+    cursor: pointer;
     opacity: 0.5;
+}
+.material-icons:hover {
+    cursor: pointer;
+    opacity: 1.5;
+}
+
+.take_notes{
+    /* position: relative; */
+    width: 80%;
+     padding: 2px 2px 2px 2px;
+    /* outline: none; */
+    /* overflow: hidden; */
+}
+.matContent{
+    padding: 2px 2px 2px 2px;
+}
+[contenteditable=true]:empty:not(:focus):before{
+    content: attr(placeholder);
+    display: block;
+    opacity:0.5;
+}
+mat-card{
+    width:600px;
 }

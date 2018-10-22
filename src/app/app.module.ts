@@ -26,6 +26,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatMenuModule } from '@angular/material/menu';
+import { IconsComponent } from './components/icons/icons.component';
+import { RemindMeComponent } from './components/remind-me/remind-me.component';
+import { CollaboratorComponent } from './components/collaborator/collaborator.component';
+import { ChangeColorComponent } from './components/change-color/change-color.component';
+import { AddImageComponent } from './components/add-image/add-image.component';
+import { ArchiveComponent } from './components/archive/archive.component';
+import { MoreComponent } from './components/more/more.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -38,6 +46,13 @@ import { MatMenuModule } from '@angular/material/menu';
     SidebarComponent,
     ToolbarComponent,
     NavbarComponent,
+    IconsComponent,
+    RemindMeComponent,
+    CollaboratorComponent,
+    ChangeColorComponent,
+    AddImageComponent,
+    ArchiveComponent,
+    MoreComponent,
    
   ],
   imports: [
@@ -58,7 +73,8 @@ import { MatMenuModule } from '@angular/material/menu';
     LayoutModule,
     MatToolbarModule,
     MatListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTooltipModule
   ],
   providers: [
     httpService,

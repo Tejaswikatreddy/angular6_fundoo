@@ -12,14 +12,14 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
 const routes: Routes = [
-  // { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '', component: LoginComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent},
   { path: 'forgot', component: ForgotPasswordComponent},
   {
-    path: 'navbar', component: NavbarComponent ,children:[
-    {path:'',component:SidebarComponent ,outlet:"sidebar" },
-    {path:'',component:DashboardComponent,outlet:"dashboard"}
+    path: '', component: NavbarComponent ,children:[
+    {path:'home',component:SidebarComponent},
+    
     
   ]},
   {path:"resetpassword/:forgotToken",component:ResetPasswordComponent},
