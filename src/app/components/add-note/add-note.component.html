@@ -1,0 +1,38 @@
+<!-- <div fxLayout="row wrap">
+
+<div  *ngFor="let note of notes" >
+  <mat-card style="height:auto;width: 270px;margin: 20px;">
+    <mat-card-header>{{note.title}}</mat-card-header>
+      <div fxLayout="row " fxLayoutAlign="space-around">
+      <div>
+        <app-remind-me></app-remind-me>
+      </div>
+      <div>
+        <app-collaborator></app-collaborator>
+      </div>
+      <div>
+        <app-change-color></app-change-color>
+      </div>
+      <div>
+        <app-add-image></app-add-image>
+      </div>
+      <div>
+        <app-archive></app-archive>
+      </div>
+      <div>
+        <app-more></app-more>
+      </div>
+    </div>
+  </mat-card>
+</div>
+
+</div>
+
+
+
+ -->
+<div fxLayout="row wrap" style="padding:10px" *ngFor="let note of notes">
+  <div>
+  <mat-card></mat-card>
+  </div>
+</div>

@@ -84,7 +84,6 @@ input:focus {
   padding-left: 10px
 }
 .example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
 }
 .mat-menu-content{
@@ -98,4 +97,11 @@ input:focus {
 .navbar{
   margin-left: 95%;
   margin-top:56px;
+}
+#accnt{
+  height:40px;
+  width:45px;
+  font-size:20px;
+  background-color:dodgerblue;
+  color:black
 }

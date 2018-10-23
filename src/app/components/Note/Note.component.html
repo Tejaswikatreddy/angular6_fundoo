@@ -1,0 +1,46 @@
+  <div fxLayout="column" fxLayoutGap="2%">
+  <div fxFlex=0></div>
+  <div fxFlex="100%" fxLayout="row"> 
+    <div fxFlex="20%"></div>
+<div fxFlex="80%">
+<div *ngIf="!clicked">
+  <mat-card class="example-card" style="height:40px;width: 550px;">
+    <mat-card-header fxLayout="row" fxLayoutAlign="center center">
+      <input type="text" class="note" placeholder="Take a note.." style="margin-top:2%;flex:1 1 auto" (click)="clicked=true">
+
+      <div fxLayout="row" fxLayoutGap="5%">
+        <div><mat-icon>list</mat-icon></div>&nbsp;&nbsp;&nbsp;
+        <div><mat-icon>photo</mat-icon></div> &nbsp;&nbsp;&nbsp;
+        <div><mat-icon>edit</mat-icon></div> &nbsp;&nbsp;&nbsp;
+      </div>
+    </mat-card-header>
+  </mat-card>
+</div>
+  <div *ngIf="clicked">
+    <mat-card class="example-card" style="height:auto;width:550px">
+      <div fxLayout="row">
+        <div contenteditable="true" placeholder="Title" class="note" id="title"></div>
+        <div>
+          <mat-icon (click)=pin()>fiber_pin</mat-icon>
+        </div>
+      </div>
+      <div contenteditable="true" class="note" placeholder="Take a Note" id="note"></div><br><br>
+      <div fxLayout="row" fxLayoutAlign="space-around center">
+        <div><app-remind-me></app-remind-me></div>
+        <div><app-collaborator></app-collaborator></div>
+        <div><app-change-color></app-change-color></div>
+        <div><app-add-image></app-add-image></div>
+        <div><app-archive></app-archive></div>
+        <div><app-more></app-more></div>
+        <div><mat-icon matTooltip="Undo">undo</mat-icon></div>
+        <div><mat-icon matTooltip="Redo">redo</mat-icon></div>
+        <div><button mat-button (click)=click()>close</button></div>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<div fxFlex="20%"></div>
+</div>
+<div fxFlex=0></div>
+</div>
+
