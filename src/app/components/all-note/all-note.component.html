@@ -1,2 +1,2 @@
-<app-note></app-note>
-<app-add-note></app-add-note>
+<app-note (onNewEntryAdded)="addNewEntry($event)"></app-note>
+<app-add-note [NoteArray]=notes></app-add-note>

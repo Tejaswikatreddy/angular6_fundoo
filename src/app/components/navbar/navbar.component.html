@@ -71,11 +71,11 @@
               Shortcuts</span></a>
         </mat-nav-list>
       </mat-sidenav>
-      <mat-sidenav-content style="position:fixed;width:-webkit-fill-available;overflow-y: scroll">
+      <mat-sidenav-content style="position:fixed;width:-webkit-fill-available; width: -moz-available;overflow-y: scroll">
         
             <router-outlet></router-outlet>
           
-            <mat-card style="position: absolute;right: 0;top: 0" *ngIf="clicked">
+            <mat-card style="position:fixed;margin-top:64px;right: 0;top: 0" *ngIf="clicked">
               <mat-list>
               <mat-card-header>
                 <div mat-card-avatar class="example-header-image">
