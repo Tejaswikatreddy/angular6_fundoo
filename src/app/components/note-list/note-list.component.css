@@ -1,0 +1,17 @@
+.icons{
+    opacity: 0;
+}
+.icons:hover{
+    opacity:1
+}
+.note{
+ word-wrap: break-word;
+     /* word-break: break-all; */
+
+}
+.maindiv{
+    display:flex;
+    flex-wrap: wrap;
+}
+
+

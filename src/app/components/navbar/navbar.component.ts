@@ -44,5 +44,8 @@ isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Ha
     // localStorage.removeItem("id");
    
   }
+  ArchiveClicked(){
+    this.router.navigate(['archive'])
+  }
  
   }

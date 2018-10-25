@@ -19,16 +19,6 @@ export class AllNoteComponent implements OnInit {
     
     console.log(event);
     if(event){
-      // this.service.get("notes/getNotesList", this.auth.getToken()).subscribe(response => {
-      //   if (response) { 
-      //     this.notes=[];
-          
-      //     for (var i = response['data'].data.length - 1; i >= 0; i--) {
-      //       this.notes.push(response['data'].data[i])
-      //     }
-      //   }
-      // })
-      this.notes = [];
       this.getNotes();
     }
    
@@ -36,14 +26,16 @@ export class AllNoteComponent implements OnInit {
   public getNotes() {
     this.service.get("notes/getNotesList", this.auth.getToken()).subscribe(response => {
       if (response) {
-        // console.log(response['data'].data);
+        this.notes = [];
         for (var i = response['data'].data.length - 1; i >= 0; i--) {
-          this.notes.push(response['data'].data[i])
-        }
+          if (response['data'].data[i].isDeleted == false && response['data'].data[i].isArchived == false){
+               this.notes.push(response['data'].data[i])
+          }
+          }
         console.log("array", this.notes)
 
       }
     })
   }
-
+ 
 }

@@ -39,7 +39,7 @@
             <mat-icon>view_agenda</mat-icon>
           </button></div>
         <div fxFlex="20%">
-          <button mat-mini-fab (click)="clicked=!clicked" style="margin-right:100px;background-color: black">{{frstLetter}}</button>
+          <button mat-mini-fab (click)="clicked=!clicked" style="margin-right:100px;background-color: grey;color:black">{{frstLetter}}</button>
 
 
         </div>
@@ -58,13 +58,13 @@
 
           <a mat-list-item href="#"><img src="../../../assets/create.svg" class="svg"><span class="sideNotes">Create
               Notes</span></a>
-          <a mat-list-item href="#"><img src="../../../assets/archive.svg" class="svg"><span class="sideNotes">Archive</span></a>
-          <a mat-list-item href="#"><img src="../../../assets/trash.svg" class="svg"><span class="sideNotes">Trash</span></a>
+          <a mat-list-item (click)=ArchiveClicked()><img src="../../../assets/archive.svg" class="svg" ><span class="sideNotes">Archive</span></a>
+          <a mat-list-item><img src="../../../assets/trash.svg" class="svg"><span class="sideNotes">Trash</span></a>
           <hr>
-          <a mat-list-item href="#"><img src="../../../assets/settings.svg" class="svg"><span class="sideNotes">Settings</span></a>
-          <a mat-list-item href="#"><img src="../../../assets/sendFeedback.svg" class="svg"><span class="sideNotes">Send
+          <a mat-list-item><img src="../../../assets/settings.svg" class="svg"><span class="sideNotes">Settings</span></a>
+          <a mat-list-item><img src="../../../assets/sendFeedback.svg" class="svg"><span class="sideNotes">Send
               Feedback</span></a>
-          <a mat-list-item href="#"><img src="../../../assets/help.svg" class="svg"><span class="sideNotes">Help</span></a>
+          <a mat-list-item><img src="../../../assets/help.svg" class="svg"><span class="sideNotes">Help</span></a>
           <a mat-list-item href="#"><img src="../../../assets/downloads.svg" class="svg"><span class="sideNotes">App
               Downloads</span></a>
           <a mat-list-item href="#"><img src="../../../assets/shortcut.svg" class="svg"><span class="sideNotes">KeyBoard
