@@ -37,7 +37,6 @@
           </mat-error>
         </mat-form-field>
 
-          <br>
         
 
         
@@ -54,13 +53,12 @@
             </mat-error>
                       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </mat-form-field>
-        <br>
         
          
 
         <div>
-          <a routerLink="/forgot">forgot password?</a> &nbsp;
-          <a routerLink="/signup">create an account..</a>
+         <a routerLink="/forgot">forgot password?</a>   
+         <div style="display:inline;padding-left:10px"><a routerLink="/signup">create an account..</a> </div>
           <button mat-align="center" mat-button class="button" (click)=login()>login</button>
         </div>
       </div>

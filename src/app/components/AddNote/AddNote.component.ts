@@ -21,7 +21,7 @@ public clicked=false;
    
   }
   addNotes(){
-   
+  //  console.log(color)
     this.title = document.getElementById("title").innerHTML;
     this.note=document.getElementById("note").innerHTML;
   
@@ -29,7 +29,8 @@ public clicked=false;
     this.service.post("notes/addNotes",{
       "title":this.title,
       "description":this.note,
-            "isPined":this.pinned
+            "isPined":this.pinned,
+            // "color":"#fff8686"
     },this.auth.getToken()).subscribe(response=>{
         console.log(response);
         this.onNewEntryAdded.emit({})

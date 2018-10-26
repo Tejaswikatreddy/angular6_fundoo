@@ -1,11 +1,16 @@
  <div fxLayoutAlign="center">
 <div  fxFlex.xl="70%" fxFlex.lg="80%" fxFlex.md="80%" fxFlex.sm="80%" fxFlex.xs="80%" class="maindiv">
     
-<mat-card *ngFor="let note of NoteArray" style="margin:1%;height:min-content" ngStyle.xl="width:150px" ngStyle.lg="width:25%" 
-ngStyle.md="width:25%" ngStyle.sm="width:40%" ngStyle.xs="width:90%" [style.backgroundColor]="note.color">
-<div >
-  <div class="note" [innerHTML]="note.title"> </div>
-  <div class="note" [innerHTML]="note.description"> </div>
+<mat-card *ngFor="let note of NoteArray" style="margin:1%;height:min-content;border-radius:10px" 
+ngStyle.xl="width:150px" ngStyle.lg="width:25%" ngStyle.md="width:25%" ngStyle.sm="width:40%"
+ ngStyle.xs="width:90%" [style.backgroundColor]="note.color">
+<div>
+  
+  <div class="note" [innerHTML]="note.title" (click)="openDialog(note)"> </div>
+  <div class="note" [innerHTML]="note.description" (click)="openDialog(note)"> </div>
+  <!-- <div style="color:black;display: inline">
+    <mat-icon (click)=pin()>fiber_pin</mat-icon>
+  </div> -->
 <span fxLayout="row " fxLayoutAlign="space-around" class="icons">
   <div><app-remind-me></app-remind-me></div>
   <div><app-collaborator></app-collaborator></div>
@@ -19,9 +24,14 @@ ngStyle.md="width:25%" ngStyle.sm="width:40%" ngStyle.xs="width:90%" [style.back
 </div>
 </div>
 
-
-<br><br>
-<br><br><br><br><br><br>
-
-
-
+<!-- <h1 mat-dialog-title>Hi {{data.name}}</h1>
+<div mat-dialog-content>
+  <p>What's your favorite animal?</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.animal">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div> -->

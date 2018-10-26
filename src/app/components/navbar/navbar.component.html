@@ -51,24 +51,24 @@
       <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async)" [position]="start">
         <mat-nav-list>
-          <a mat-list-item href=""><img src="../../../assets/notes.svg" class="svg"><span class="sideNotes">Notes</span></a>
-          <a mat-list-item href="#"><img src="../../../assets/remainder.svg" class="svg"><span class="sideNotes">Remainders</span></a>
+          <a mat-list-item (click)=NoteClicked()><img src="../../../assets/notes.svg" class="svg"><span class="sideNotes">Notes</span></a>
+          <a mat-list-item><img src="../../../assets/remainder.svg" class="svg"><span class="sideNotes">Remainders</span></a>
           <hr>
-          <p>Labels<button mat-button style="margin-left:20%">EDIT</button></p>
+          <p style="padding-left:10px">Labels<button mat-button style="margin-left: 30%" >EDIT</button></p>
 
-          <a mat-list-item href="#"><img src="../../../assets/create.svg" class="svg"><span class="sideNotes">Create
+          <a mat-list-item (click)="openDialog()"><img src="../../../assets/create.svg" class="svg"><span class="sideNotes">Create
               Notes</span></a>
           <a mat-list-item (click)=ArchiveClicked()><img src="../../../assets/archive.svg" class="svg" ><span class="sideNotes">Archive</span></a>
-          <a mat-list-item><img src="../../../assets/trash.svg" class="svg"><span class="sideNotes">Trash</span></a>
+          <a mat-list-item (click)=TrashClicked()><img src="../../../assets/trash.svg" class="svg"><span class="sideNotes">Trash</span></a>
           <hr>
-          <a mat-list-item><img src="../../../assets/settings.svg" class="svg"><span class="sideNotes">Settings</span></a>
+          <!-- <a mat-list-item><img src="../../../assets/settings.svg" class="svg"><span class="sideNotes">Settings</span></a>
           <a mat-list-item><img src="../../../assets/sendFeedback.svg" class="svg"><span class="sideNotes">Send
               Feedback</span></a>
           <a mat-list-item><img src="../../../assets/help.svg" class="svg"><span class="sideNotes">Help</span></a>
           <a mat-list-item href="#"><img src="../../../assets/downloads.svg" class="svg"><span class="sideNotes">App
               Downloads</span></a>
           <a mat-list-item href="#"><img src="../../../assets/shortcut.svg" class="svg"><span class="sideNotes">KeyBoard
-              Shortcuts</span></a>
+              Shortcuts</span></a> -->
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content style="position:fixed;width:-webkit-fill-available; width: -moz-available;overflow-y: scroll">
@@ -81,7 +81,7 @@
                 <div mat-card-avatar class="example-header-image">
                   <button mat-mini-fab disabled  id="accnt">{{frstLetter}}</button>
                 </div>
-                <mat-card-title>{{firstname}}&nbsp;{{lastname}} </mat-card-title>
+                <mat-card-title>{{firstname}} {{lastname}} </mat-card-title>
                 <mat-card-subtitle>{{email}}</mat-card-subtitle>
               </mat-card-header>
               </mat-list>

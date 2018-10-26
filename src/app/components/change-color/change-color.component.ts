@@ -10,11 +10,13 @@ import { httpService } from '../../services/http.service';
 export class ChangeColorComponent implements OnInit {
 @Input() Noteid;
 @Output() eventEmitter=new EventEmitter(); 
+@Output() colorCode;
   constructor(public service: httpService) { }
 
   ngOnInit() {
   }
   change(color){
+    this.colorCode=color;
     var arr=[]
     arr.push(this.Noteid)
     this.service.postDel("notes/changesColorNotes",{
