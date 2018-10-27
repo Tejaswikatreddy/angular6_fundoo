@@ -5,19 +5,22 @@
 ngStyle.xl="width:150px" ngStyle.lg="width:25%" ngStyle.md="width:25%" ngStyle.sm="width:40%"
  ngStyle.xs="width:90%" [style.backgroundColor]="note.color">
 <div>
-  
-  <div class="note" [innerHTML]="note.title" (click)="openDialog(note)"> </div>
-  <div class="note" [innerHTML]="note.description" (click)="openDialog(note)"> </div>
-  <!-- <div style="color:black;display: inline">
-    <mat-icon (click)=pin()>fiber_pin</mat-icon>
-  </div> -->
+  <div fxLayout="row">
+    <div  fxFlex=90% class="note"  [innerHTML]="note.title" (click)="open(note)"></div>
+    <span fxFlex=10%>
+      <mat-icon (click)=pin()>fiber_pin</mat-icon>
+    </span>
+  </div>
+  <!-- <div class="note" [innerHTML]="note.title" (click)="openDialog(note)"> </div> -->
+  <div class="note" [innerHTML]="note.description" (click)="open(note)"> </div>
+ 
 <span fxLayout="row " fxLayoutAlign="space-around" class="icons">
   <div><app-remind-me></app-remind-me></div>
   <div><app-collaborator></app-collaborator></div>
-  <div><app-change-color [Noteid]=note.id (eventEmitter)="eventDone($event)"></app-change-color></div>
+  <div><app-change-color [Note]=note (eventEmitter)="eventDone($event)"></app-change-color></div>
   <div> <app-add-image></app-add-image></div>
-  <div> <app-archive [Noteid]=note.id (eventEmit)="eventDone($event)"></app-archive></div>
-  <div> <app-more [Noteid]=note.id (eventEmit)="eventDone($event)"></app-more></div>
+  <div> <app-archive [Note]=note (eventEmit)="eventDone($event)"></app-archive></div>
+  <div> <app-more [Note]=note (eventEmit)="eventDone($event)"></app-more></div>
 </span>
 </div>
 </mat-card>

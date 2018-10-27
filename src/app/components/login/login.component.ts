@@ -1,15 +1,22 @@
+/** Purpose         : Login page
+ *  @description
+ *  @file           : login.component.ts
+ *  @author         : K.Dhana Tejaswi
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { httpService } from '../../services/http.service';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { AuthService } from "../../services/auth.service"
-
+//component designer 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  //creating an object model
   model:any={
     "email": "",
     "password":""
@@ -21,12 +28,15 @@ export class LoginComponent implements OnInit {
     public router: Router, private auth: AuthService) { }
 
   ngOnInit() {
+    //checking if the localStorage has login token
   if(localStorage.getItem("id")!=null){
     this.router.navigate(['home'])
     return;
   }
   }
-
+/**
+ * @function login() is called when we click the  login button in the html page
+ */
   login(){
     if(this.model.email.length==0 || this.model.password.length==0){
       console.log("fill all the details")
@@ -35,6 +45,7 @@ export class LoginComponent implements OnInit {
       })
       return;
     }
+    //calling the api through httpService
     this._signupService.postData("user/login", {
       "email": this.model.email,
       "password": this.model.password
@@ -42,11 +53,12 @@ export class LoginComponent implements OnInit {
       console.log("login succesfull")
       console.log(response)
       this.id = response["id"];
-    // localStorage.setItem("id",this.id)
+      //when successfully logged in store the token in the local Storage
       this.auth.setToken(this.id );
       localStorage.setItem("firstName", response['firstName']);
       localStorage.setItem("lastName", response['lastName']);
       localStorage.setItem("email", response['email']);
+      localStorage.setItem("userId", response['userId']);
       this.snackbar.open('login', 'success', {
         duration: 2000,
       });

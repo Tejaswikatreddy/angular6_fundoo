@@ -1,9 +1,15 @@
+/** Purpose         : Note-list page
+ *  @description
+ *  @file           : Note-list.component.ts
+ *  @author         : K.Dhana Tejaswi
+*/
+
 import { Component, OnInit,Input,Output ,EventEmitter } from '@angular/core';
 import { httpService } from '../../services/http.service';
 import { AuthService } from "../../services/auth.service"
 import { MatDialog } from '@angular/material';
 import { UpdateNoteComponent } from '../update-note/update-note.component';
-
+//component decorator
 @Component({
   selector: 'app-note-list',
   templateUrl: './note-list.component.html',
@@ -11,34 +17,39 @@ import { UpdateNoteComponent } from '../update-note/update-note.component';
 })
 export class NotelistComponent implements OnInit {
  @Input() NoteArray;
+ //creating an object for EventEmitter
  @Output() eventEmit=new EventEmitter();
   constructor(private auth: AuthService, public service: httpService,
               public dialog: MatDialog) { }
   ngOnInit() {
     console.log(this.NoteArray)
   }
+/**
+ * 
+ * @function eventDone() invoked when there is an event in the child component
+ */
  eventDone(event){
    console.log("deleted in note list",event)
    if(event){
      this.eventEmit.emit({});
+     //event emitted to the parent component
    }
  }
-  openDialog(note): void {
+ /**
+  * @function openDialog() opens a popup when clicked on the notes
+  * @param note is the object with the details of the note on which it is clicked
+  */
+  open(note): void {
     console.log(note.color)
 
     const dialogRef = this.dialog.open(UpdateNoteComponent, {
-      // width: 'min-content',
-      data: { title: note.title, description: note.description,id:note.id,color:note.color},
-      panelClass: 'my-dialog'
-    });
+           data:note,
+        });
 console.log(note);
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.eventEmit.emit({});
-      
-      
-      // this.animal = result;
-    });
+   });
   }
 
 }

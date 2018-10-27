@@ -1,3 +1,10 @@
+/** Purpose         : Navbar page
+ *  @description
+ *  @file           : Navbar.component.ts
+ *  @author         : K.Dhana Tejaswi
+*/
+
+
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
@@ -7,7 +14,7 @@ import { httpService } from '../../services/http.service';
 import { AuthService } from "../../services/auth.service"
 import { MatDialog } from '@angular/material';
 import { EditLabelComponent } from '../edit-label/edit-label.component';
-
+//component decorator
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -20,6 +27,7 @@ public firstname=localStorage.getItem("firstName")
 public lastname = localStorage.getItem("lastName")
 public frstLetter=this.firstname[0];
 public email = localStorage.getItem("email")
+//creating an object for EventEmitter
   @Output() eventEmit = new EventEmitter();
 
 isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -29,7 +37,9 @@ isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Ha
     
   constructor(private breakpointObserver: BreakpointObserver, public router: Router, 
     private service: httpService, private auth: AuthService, public dialog: MatDialog) {}
-
+/**
+ * @function logout() is invoked when the logout button is clicked
+ */
   logout(){
     console.log("logout function")
    console.log(this.auth.getToken())
@@ -37,6 +47,7 @@ isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Ha
       
         this.auth.removeToken();
         console.log(response);
+        //when logged out navigate the page to login page
         this.router.navigate(['login']);
       
     },error=>{
@@ -44,31 +55,42 @@ isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Ha
           console.log(error);
         }
     })
-    // localStorage.removeItem("id");
+  
    
   }
+  /**
+   * @function Archiveclicked() invoked when the Archive is clicked in the navbar
+   */
   ArchiveClicked(){
     this.router.navigate(['archive'])
   }
+  /**
+   * @function TrashClicked() invoked when Trash is clicked in the sidenav
+   */
   TrashClicked(){
     this.router.navigate(['trash'])
 
   }
+  /**
+   * @function NoteClicked() whenever the notes is clicked in the sidenav
+   */
   NoteClicked(){
     this.router.navigate(['home'])
   }
+  /**
+   * 
+   * @function OpenDialog() when the create label is clicked it is invoked to display a popup
+   * 
+   */
   openDialog(note): void {
     const dialogRef = this.dialog.open(EditLabelComponent, {
-
-      // data: { title: note.title, description: note.description, id: note.id }
+  'panelClass':"label"
     });
     console.log(note);
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.eventEmit.emit({});
-
-
-      // this.animal = result;
+     
     });
   }
   

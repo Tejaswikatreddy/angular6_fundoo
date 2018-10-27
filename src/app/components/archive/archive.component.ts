@@ -7,7 +7,7 @@ import { httpService } from '../../services/http.service';
   styleUrls: ['./archive.component.css']
 })
 export class ArchiveComponent implements OnInit {
-  @Input() Noteid;
+  @Input() Note;
   constructor(private service: httpService) { }
 
   ngOnInit() {
@@ -15,9 +15,9 @@ export class ArchiveComponent implements OnInit {
   @Output() eventEmit = new EventEmitter();
 
   archive(){
-    console.log(this.Noteid)
+    console.log(this.Note.id)
     var arr = []
-    arr.push(this.Noteid)
+    arr.push(this.Note.id)
     console.log(arr);
     this.service.postDel("notes/archiveNotes",
       {

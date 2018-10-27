@@ -8,7 +8,7 @@ import { httpService } from '../../services/http.service';
 })
 export class MoreComponent implements OnInit {
   constructor(private service:httpService) { }
-@Input() Noteid;
+@Input() Note;
   
   @Output() eventEmit = new EventEmitter();
   // public data: any = 
@@ -16,9 +16,9 @@ export class MoreComponent implements OnInit {
    
   }
 delete(){
-  console.log(this.Noteid)
+  console.log(this.Note.id)
   var arr=[]
-  arr.push(this.Noteid)
+  arr.push(this.Note.id)
   console.log(arr);
   this.service.postDel("notes/trashNotes",
     {

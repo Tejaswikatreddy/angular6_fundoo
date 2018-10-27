@@ -1,0 +1,35 @@
+::ng-deep.mat-dialog-container {
+    box-shadow: 0 11px 15px -7px rgba(0,0,0,.2), 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12);
+    display: block;
+    /* padding: 24px; */
+    /* border-radius: px; */
+    box-sizing: border-box;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    outline: 0;
+    width: 400px;
+    height: auto;
+    min-height: inherit;
+    border-radius: 10px;
+    max-height: inherit;
+    padding: 5px
+}
+.material-icons:hover {
+    size:5px
+}
+.note{
+    width: 100%;
+  height: auto;
+  /* border:none; */
+  /* border-color: transparent; */
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 15px;
+  border-bottom: 2px solid black;
+  outline: none
+
+}
+[contenteditable=true]:empty:not(:focus):before{
+    content: attr(placeholder);
+    display: block;
+    /* opacity:0.5; */
+}

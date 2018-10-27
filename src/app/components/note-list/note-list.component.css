@@ -6,6 +6,7 @@
 }
 .note{
  word-wrap: break-word;
+ width:120px
      /* word-break: break-all; */
 
 }
@@ -14,5 +15,8 @@
     flex-wrap: wrap;
     padding-bottom: 50px;
 }
-
+.material-icons {
+    cursor: pointer;
+    opacity: 0.5;
+}
 

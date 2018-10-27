@@ -1,12 +1,22 @@
-
+<div style="padding:20px">
 <h1 mat-dialog-title>Create Labels</h1>
 <div mat-dialog-content>
-  <!-- <p>What's your favorite animal?</p> -->
-  <mat-form-field>
-    <input matInput><mat-icon>done</mat-icon>
-  </mat-form-field>
+<div flexLayout="row" fxLayoutAlign="space-between center"> 
+  <div fxFlex="10%"><mat-icon>clear</mat-icon></div>
+  <div contenteditable="true" class="note" id="title" fxFlex="80%" #myDiv></div>
+ <!-- <div  style="display:inline"><mat-form-field><input matInput [(ngModel)]=label></mat-form-field></div> -->
+  <div fxFlex="10%"><mat-icon>done</mat-icon></div>
+</div>
+<div *ngFor="let label of labelArray"  fxFlexLayout="row">
+<div fxFlex="10%"> <mat-icon>delete</mat-icon></div>
+<div fxFlex="80%" [innerHTML]="label.label"></div>
+<div fxFlex="10%"><mat-icon>edit</mat-icon></div>
+
+</div>
+  
 </div>
 <div mat-dialog-actions>
   
-  <button mat-button  cdkFocusInitial (click)=onClose()>close</button>
+  <button mat-button  cdkFocusInitial (click)=onClose() style="float:right">Done</button>
+</div>
 </div>

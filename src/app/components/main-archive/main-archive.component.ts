@@ -1,6 +1,13 @@
+/** Purpose         : MainArchive page
+ *  @description
+ *  @file           : MainArchive.component.ts
+ *  @author         : K.Dhana Tejaswi
+*/
+
+
 import { Component, OnInit } from '@angular/core';
 import { httpService } from '../../services/http.service';
-
+//component decorator
 @Component({
   selector: 'app-main-archive',
   templateUrl: './main-archive.component.html',
@@ -14,9 +21,11 @@ export class MainArchiveComponent implements OnInit {
   ngOnInit() {
     this.getList();
   }
+  //calling an api to get all the archive3d notes through services
   getList(){
     this.service.get("notes/getArchiveNotesList",localStorage.getItem("id")).subscribe(response=>{
       console.log(response['data'].data)
+      //whenever there is a response for the api call push it into an array
       for (var i = 0; i < response['data'].data.length;i++){
         this.archiveArray.push(response['data'].data[i])
       }

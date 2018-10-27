@@ -1,6 +1,12 @@
+/** Purpose         : ChangeColor page
+ *  @description
+ *  @file           : changeColor.component.ts
+ *  @author         : K.Dhana Tejaswi
+*/
+
 import { Component,Output, OnInit,Input,EventEmitter } from '@angular/core';
 import { httpService } from '../../services/http.service';
-
+//component decorator
 @Component({
   selector: 'app-change-color',
   templateUrl: './change-color.component.html',
@@ -8,23 +14,30 @@ import { httpService } from '../../services/http.service';
   
 })
 export class ChangeColorComponent implements OnInit {
-@Input() Noteid;
+@Input() Note;
+//creates an object for the EventEmitter
 @Output() eventEmitter=new EventEmitter(); 
+  @Output() eventColor = new EventEmitter(); 
+
 @Output() colorCode;
   constructor(public service: httpService) { }
 
   ngOnInit() {
   }
   change(color){
-    this.colorCode=color;
+    this.colorCode = color;
+    this.eventColor.emit(this.colorCode)
+    if(this.Note!=null){ 
     var arr=[]
-    arr.push(this.Noteid)
+    arr.push(this.Note.id)
     this.service.postDel("notes/changesColorNotes",{
       "color":color,
       "noteIdList":arr
     },localStorage.getItem("id")).subscribe(response=>{
       console.log(response);
       this.eventEmitter.emit({})
+    
     })
+  }
   }
 }
