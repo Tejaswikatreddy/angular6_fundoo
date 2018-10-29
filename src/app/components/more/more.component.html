@@ -1,9 +1,24 @@
-<mat-icon matTooltip="More" [matMenuTriggerFor]="menu" >more_vert</mat-icon>
+<!-- <mat-icon matTooltip="More" [matMenuTriggerFor]="menu" >more_vert</mat-icon>
 <mat-menu #menu="matMenu" style="position: absolute" [overlapTrigger]="false">
     <button mat-menu-item (click)=delete()>Delete Note</button>
-    <button mat-menu-item>Add Label</button>
-    
-    <button mat-menu-item>Show Checkbox</button>
- 
+    <button mat-menu-item [matMenuTriggerFor]="AddLabel">Add Label</button>
+    <button mat-menu-item>Show CheckList</button>
+ </mat-menu> -->
 
+
+<!-- <button mat-button [matMenuTriggerFor]="menu">Animal index</button> 
+-->
+
+<mat-icon matTooltip="More" [matMenuTriggerFor]="menu">more_vert</mat-icon>
+
+<mat-menu #menu="matMenu">
+    <button mat-menu-item (click)=delete()>Delete Note</button>
+    <button mat-menu-item [matMenuTriggerFor]="AddLabels" (click)=click()>Add Label</button>
+    <button mat-menu-item>Show CheckList</button>
+</mat-menu>
+
+<mat-menu #AddLabels="matMenu" >
+    <div *ngFor="let label of labelArray"> 
+        <mat-checkbox class="example-margin" (click)="$event.stopPropagation();">{{label.label}}</mat-checkbox>
+      </div>
 </mat-menu>

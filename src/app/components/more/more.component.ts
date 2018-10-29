@@ -9,7 +9,8 @@ import { httpService } from '../../services/http.service';
 export class MoreComponent implements OnInit {
   constructor(private service:httpService) { }
 @Input() Note;
-  
+public flag=true;
+  public labelArray=[];
   @Output() eventEmit = new EventEmitter();
   // public data: any = 
   ngOnInit() {
@@ -31,4 +32,27 @@ delete(){
     this.eventEmit.emit({})
 })
 }
+click(){
+ this.flag=false;
+ this.getLabels();
+}
+  getLabels() {
+    console.log("get labels")
+    this.service.get("noteLabels/getNoteLabelList", localStorage.getItem('id')).subscribe(
+      response => {
+        this.labelArray = [];
+       
+        console.log(response['data'].details);
+        for (var i = 0; i < (response['data'].details.length); i++) {
+          if (response['data'].details[i].isDeleted != true) {
+            this.labelArray.push(response['data'].details[i])
+            
+          }
+        }
+        console.log(this.labelArray, "labelArray")
+        
+      }
+    )
+
+  }
 }

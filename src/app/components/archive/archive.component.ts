@@ -19,6 +19,7 @@ export class ArchiveComponent implements OnInit {
     var arr = []
     arr.push(this.Note.id)
     console.log(arr);
+    if(this.Note.id==null){
     this.service.postDel("notes/archiveNotes",
       {
         "isArchived": true,
@@ -28,6 +29,9 @@ export class ArchiveComponent implements OnInit {
       .subscribe(response => {
         console.log(response);
         this.eventEmit.emit({})
+      },error=>{
+        console.log(error)
       })
+    }
   }
   }

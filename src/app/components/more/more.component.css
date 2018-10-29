@@ -6,3 +6,8 @@
     cursor: pointer;
     opacity: 1.5;
 }
+::ng-deep.mat-menu-content:not(:empty) {
+    padding:10px;
+    /* padding-bottom: 8px; */
+    overflow:hidden
+}

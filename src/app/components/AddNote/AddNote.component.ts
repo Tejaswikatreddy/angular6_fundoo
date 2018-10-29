@@ -37,6 +37,7 @@ public clicked=false;
   
     this.clicked=!this.clicked;
     //calling the api to add the Note through services
+    if(this.title==""){
     this.service.post("notes/addNotes",{
       "title":this.title,
       "description":this.note,
@@ -46,11 +47,11 @@ public clicked=false;
         console.log(response);
              //emitting an event when the note is added
               this.onNewEntryAdded.emit({})         
-    }),error=>{
+    },error=>{
       console.log(error);
      
-    }
-    
+    })
+  }
   }
    pin(){
       this.pinned=true;

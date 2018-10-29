@@ -44,9 +44,12 @@ isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Ha
     console.log("logout function")
    console.log(this.auth.getToken())
     this.service.post("/user/logout",this.data,this.auth.getToken()).subscribe(response=>{
-      
+      localStorage.removeItem('firstName')
+      localStorage.removeItem('lastName')
+      localStorage.removeItem('userId')
+      localStorage.removeItem('email')
         this.auth.removeToken();
-        console.log(response);
+        // console.log(response);
         //when logged out navigate the page to login page
         this.router.navigate(['login']);
       
