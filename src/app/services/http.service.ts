@@ -17,14 +17,15 @@ export class httpService {
     return this.http.post(this.URL+"/"+name,body);
   }
   post(name,input,access_token){
-    console.log(input);
-    console.log(access_token)
+    // console.log(input);
+    // console.log(access_token)
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': access_token
       })
     };
+    // console.log(this.getFormUrlEncoded(input))
     return this.http.post(this.URL+"/"+name,this.getFormUrlEncoded(input),httpOptions)
   }
   getFormUrlEncoded(toConvert) {
@@ -36,4 +37,37 @@ export class httpService {
     }
     return formBody.join('&');
   }
+  get(name,token){
+    const httpOptions = {
+      headers: new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': token
+    })
+  }
+    return this.http.get(this.URL + "/" + name,httpOptions);
+  }
+
+postDel(name, input, access_token){
+  // console.log(input);
+  // console.log(access_token)
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': access_token
+    })
+  };
+  // console.log(this.getFormUrlEncoded(input))
+  return this.http.post(this.URL + "/" + name, input, httpOptions)
+}
+delete(name,token){
+  // var url = `${this.URL + "/" + name}/${id}/${"deleteNoteLabel"}`;
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token
+    })
+  };
+  return this.http.delete(this.URL + "/" + name,httpOptions)
+
+}
 }
