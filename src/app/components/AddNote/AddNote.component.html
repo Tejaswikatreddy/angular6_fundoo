@@ -31,7 +31,7 @@
         <div><app-change-color [Note]="" (eventColor)=colorChanged($event) ></app-change-color></div>
         <div><app-add-image></app-add-image></div>
         <div><app-archive></app-archive></div>
-        <div><app-more></app-more></div>
+        <div><app-more (labelEvent)=labelEvent($event)></app-more></div>
         <div><mat-icon matTooltip="Undo">undo</mat-icon></div>
         <div><mat-icon matTooltip="Redo">redo</mat-icon></div>
         <div><button mat-button (click)=addNotes()>close</button></div>

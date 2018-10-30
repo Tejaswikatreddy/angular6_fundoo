@@ -11,30 +11,22 @@ ngStyle.xl="width:150px" ngStyle.lg="width:25%" ngStyle.md="width:25%" ngStyle.s
       <mat-icon (click)=pin()>fiber_pin</mat-icon>
     </span>
   </div>
-  <!-- <div class="note" [innerHTML]="note.title" (click)="openDialog(note)"> </div> -->
+  
   <div class="note" [innerHTML]="note.description" (click)="open(note)"> </div>
+<mat-chip-list>
+  <mat-chip *ngFor="let label of note.noteLabels">{{label.label}}</mat-chip>
  
+  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+</mat-chip-list>
 <span fxLayout="row " fxLayoutAlign="space-around" class="icons">
   <div><app-remind-me></app-remind-me></div>
   <div><app-collaborator></app-collaborator></div>
   <div><app-change-color [Note]=note (eventEmitter)="eventDone($event)"></app-change-color></div>
   <div> <app-add-image></app-add-image></div>
   <div> <app-archive [Note]=note (eventEmit)="eventDone($event)"></app-archive></div>
-  <div> <app-more [Note]=note (eventEmit)="eventDone($event)"></app-more></div>
+  <div> <app-more [Note]=note (eventEmit)="eventDone($event)" ></app-more></div>
 </span>
 </div>
 </mat-card>
 </div>
 </div>
-
-<!-- <h1 mat-dialog-title>Hi {{data.name}}</h1>
-<div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.animal">
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
-</div> -->

@@ -4,7 +4,7 @@
  *  @author         : K.Dhana Tejaswi
 */
 
-import { Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, ViewChild} from '@angular/core';
 import { httpService } from '../../services/http.service';
 import { AuthService } from "../../services/auth.service"
 import { error } from '@angular/compiler/src/util';
@@ -25,6 +25,7 @@ public changedColor="#ffffff"
 //creating an object for eventEmitter
   constructor(private service:httpService,private auth:AuthService ) { }
 public clicked=false;
+public labelId=[];
   ngOnInit() {
    
   }
@@ -37,27 +38,33 @@ public clicked=false;
   
     this.clicked=!this.clicked;
     //calling the api to add the Note through services
-    if(this.title==""){
+ 
     this.service.post("notes/addNotes",{
       "title":this.title,
       "description":this.note,
       "isPined":this.pinned,
-      "color": apiColor
+      "color": apiColor,
+      "labelIdList":JSON.stringify(this.labelId)
     },this.auth.getToken()).subscribe(response=>{
         console.log(response);
+
              //emitting an event when the note is added
               this.onNewEntryAdded.emit({})         
     },error=>{
       console.log(error);
      
     })
-  }
+ 
   }
    pin(){
       this.pinned=true;
    }
   colorChanged(event){
     this.changedColor=event;
+  }
+  labelEvent(event){
+    this.labelId.push(event);
+    console.log("add component label",event)
   }
   }
 

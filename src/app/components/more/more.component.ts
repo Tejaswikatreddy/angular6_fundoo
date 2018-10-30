@@ -7,52 +7,82 @@ import { httpService } from '../../services/http.service';
   styleUrls: ['./more.component.css']
 })
 export class MoreComponent implements OnInit {
-  constructor(private service:httpService) { }
-@Input() Note;
-public flag=true;
-  public labelArray=[];
+  constructor(private service: httpService) { }
+  @Input() Note: object;
+  @Output() labelArray=[];
+  public flag = true;
+  public checked = false;
   @Output() eventEmit = new EventEmitter();
-  // public data: any = 
+  @Output() labelEvent = new EventEmitter();
+  public noteLabels = [];
   ngOnInit() {
-   
+      if(this.Note!=null){
+      for (var i = 0; i < this.Note['noteLabels'].length; i++) {
+        this.noteLabels.push(this.Note['noteLabels'][i])
+      }
+    }
+      this.getLabels()
   }
-delete(){
-  console.log(this.Note.id)
-  var arr=[]
-  arr.push(this.Note.id)
-  console.log(arr);
-  this.service.postDel("notes/trashNotes",
-    {
-      "isDeleted": true,
-      "noteIdList": arr
-
-    } ,localStorage.getItem("id"))
-  .subscribe(response=>{
-  console.log(response);
-    this.eventEmit.emit({})
-})
-}
-click(){
- this.flag=false;
- this.getLabels();
-}
+  
+ 
+  delete() {
+    console.log(this.Note['id'])
+    var arr = []
+    arr.push(this.Note['id'])
+    console.log(arr);
+    this.service.postDel("notes/trashNotes",
+      {
+        "isDeleted": true,
+        "noteIdList": arr
+      }, localStorage.getItem("id"))
+      .subscribe(response => {
+        console.log(response);
+        this.eventEmit.emit({})
+      })
+  }
+ 
+ 
   getLabels() {
-    console.log("get labels")
+  
     this.service.get("noteLabels/getNoteLabelList", localStorage.getItem('id')).subscribe(
       response => {
-        this.labelArray = [];
-       
-        console.log(response['data'].details);
-        for (var i = 0; i < (response['data'].details.length); i++) {
-          if (response['data'].details[i].isDeleted != true) {
-            this.labelArray.push(response['data'].details[i])
-            
+        this.labelArray = response['data'].details;
+        if(this.noteLabels.length>0){
+        for (var i = 0; i < this.labelArray.length; i++) {
+          for (var j = 0; j < this.noteLabels.length; j++) {
+            if (this.labelArray[i].id == this.noteLabels[j].id) {
+              this.labelArray[i].isChecked = true;
+            }
           }
         }
-        console.log(this.labelArray, "labelArray")
-        
       }
-    )
-
+      })
   }
+
+  labelSelected(labelObj) {
+    console.log("selected label is", labelObj.isChecked);
+    this.labelEvent.emit(labelObj.id)
+    if (this.Note != null && labelObj.isChecked==null){    
+      console.log("add function");
+
+      console.log(labelObj.id)
+      this.service.postDel("/notes/" + this.Note['id'] + "/addLabelToNotes/" + labelObj.id + "/add", null, localStorage.getItem('id'))
+        .subscribe(Response => {
+          console.log(Response);
+          this.eventEmit.emit({})
+        }, error => {
+          console.log(error)
+        })
+      }
+    if (this.Note != null && labelObj.isChecked==true){
+      this.service.postDel("/notes/" + this.Note['id'] + "/addLabelToNotes/" + labelObj.id + "/remove", null, localStorage.getItem('id'))
+        .subscribe(Response => {
+          console.log(Response);
+          this.eventEmit.emit({})
+        }, error => {
+          console.log(error)
+        })
+    }
+    }
+  
 }

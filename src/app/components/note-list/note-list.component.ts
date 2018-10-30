@@ -19,10 +19,11 @@ export class NotelistComponent implements OnInit {
  @Input() NoteArray;
  //creating an object for EventEmitter
  @Output() eventEmit=new EventEmitter();
+// public removable=true;
   constructor(private auth: AuthService, public service: httpService,
               public dialog: MatDialog) { }
   ngOnInit() {
-    console.log(this.NoteArray)
+    console.log('notearray-',this.NoteArray)
   }
 /**
  * 
@@ -51,7 +52,7 @@ console.log(note);
       this.eventEmit.emit({});
    });
   }
-
+ 
 }
   
 
