@@ -56,6 +56,7 @@ postDel(name, input, access_token){
       'Authorization': access_token
     })
   };
+  console.log(access_token)
   // console.log(this.getFormUrlEncoded(input))
   return this.http.post(this.URL + "/" + name, input, httpOptions)
 }
