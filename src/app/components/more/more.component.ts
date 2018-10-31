@@ -15,7 +15,10 @@ export class MoreComponent implements OnInit {
   @Output() eventEmit = new EventEmitter();
   @Output() labelEvent = new EventEmitter();
   public noteLabels = [];
+  public search;
   ngOnInit() {
+    console.log(this.Note);
+    
       if(this.Note!=null){
       for (var i = 0; i < this.Note['noteLabels'].length; i++) {
         this.noteLabels.push(this.Note['noteLabels'][i])

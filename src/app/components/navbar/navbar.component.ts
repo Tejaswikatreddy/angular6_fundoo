@@ -11,6 +11,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { httpService } from '../../services/http.service';
+import { DataService } from '../../services/data.service';
+
 import { AuthService } from "../../services/auth.service"
 import { MatDialog } from '@angular/material';
 import { EditLabelComponent } from '../edit-label/edit-label.component';
@@ -29,14 +31,15 @@ public frstLetter=this.firstname[0];
 public email = localStorage.getItem("email")
 //creating an object for EventEmitter
   @Output() eventEmit = new EventEmitter();
-
+public searchInput;
 isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
     );
     
   constructor(private breakpointObserver: BreakpointObserver, public router: Router, 
-    private service: httpService, private auth: AuthService, public dialog: MatDialog) {}
+    private service: httpService, private auth: AuthService, public dialog: MatDialog,
+    public dataService: DataService) {}
 /**
  * @function logout() is invoked when the logout button is clicked
  */
@@ -92,10 +95,28 @@ isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Ha
     console.log(note);
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.getLabels();
       this.eventEmit.emit({});
      
     });
   }
-  
- 
+  public labelArray=[];
+  getLabels() {
+
+    this.service.get("noteLabels/getNoteLabelList", localStorage.getItem('id')).subscribe(
+      response => {
+        this.labelArray = response['data'].details;
+      })
+
+    }
+  ngOnInit() {
+    this.getLabels();
+  }
+  searchClicked(){
+   
+    this.router.navigate(['search'])
+  }
+  passMessage(){
+    this.dataService.changeMessage(this.searchInput)
+  }
   }

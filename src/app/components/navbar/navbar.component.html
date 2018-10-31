@@ -25,7 +25,7 @@
         </div>
         <div ngStyle.xs="visibility:collapse" ngStyle.lg="display:inline" ngStyle.xl="display:inline" ngStyle.md="display:inline"
           ngStyle.sm="visibility:collapse">
-          <input type="text" placeholder="Search" class="notselected" style="padding-left:5%">
+          <input type="text" placeholder="Search" class="notselected" style="padding-left:5%" [(ngModel)]="searchInput" (click)=searchClicked() (keydown.enter)=passMessage()>
         </div>
       </div>
 
@@ -54,25 +54,23 @@
           <a mat-list-item (click)=NoteClicked()><img src="../../../assets/notes.svg" class="svg"><span class="sideNotes">Notes</span></a>
           <a mat-list-item><img src="../../../assets/remainder.svg" class="svg"><span class="sideNotes">Remainders</span></a>
           <hr>
-          <p style="padding-left:10px">Labels<button mat-button style="margin-left: 30%" >EDIT</button></p>
-
-          <a mat-list-item (click)="openDialog()"><img src="../../../assets/create.svg" class="svg"><span class="sideNotes">Edit Labels</span></a>
-          <a mat-list-item (click)=ArchiveClicked()><img src="../../../assets/archive.svg" class="svg" ><span class="sideNotes">Archive</span></a>
-          <a mat-list-item (click)=TrashClicked()><img src="../../../assets/trash.svg" class="svg"><span class="sideNotes">Trash</span></a>
+          <p style="padding-left:10px">Labels<button mat-button style="margin-left: 30%" (click)="openDialog()">EDIT</button></p>
+          <a mat-list-item *ngFor="let label of labelArray">
+            <img src="../../../assets/label.svg" class="svg">
+            <span class="sideNotes">{{label.label}}</span></a>
+          <a mat-list-item (click)="openDialog()"><img src="../../../assets/create.svg" class="svg">
+            <span class="sideNotes">Edit Labels</span></a>
+          <a mat-list-item (click)=ArchiveClicked()><img src="../../../assets/archive.svg" class="svg" >
+            <span class="sideNotes">Archive</span></a>
+          <a mat-list-item (click)=TrashClicked()><img src="../../../assets/trash.svg" class="svg">
+            <span class="sideNotes">Trash</span></a>
           <hr>
-          <!-- <a mat-list-item><img src="../../../assets/settings.svg" class="svg"><span class="sideNotes">Settings</span></a>
-          <a mat-list-item><img src="../../../assets/sendFeedback.svg" class="svg"><span class="sideNotes">Send
-              Feedback</span></a>
-          <a mat-list-item><img src="../../../assets/help.svg" class="svg"><span class="sideNotes">Help</span></a>
-          <a mat-list-item href="#"><img src="../../../assets/downloads.svg" class="svg"><span class="sideNotes">App
-              Downloads</span></a>
-          <a mat-list-item href="#"><img src="../../../assets/shortcut.svg" class="svg"><span class="sideNotes">KeyBoard
-              Shortcuts</span></a> -->
+        
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content style="position:fixed;width:-webkit-fill-available; width: -moz-available;overflow-y: scroll">
         
-            <router-outlet></router-outlet>
+            <router-outlet ></router-outlet>
           
             <mat-card style="position:fixed;margin-top:64px;right: 0;top: 0" *ngIf="clicked">
               <mat-list>

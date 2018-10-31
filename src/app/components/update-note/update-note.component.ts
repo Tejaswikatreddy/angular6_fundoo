@@ -52,6 +52,7 @@ public bgcolor=this.data.color;
   colorChanged(event){
     this.bgcolor=event;
   }
+ 
   }
 
 

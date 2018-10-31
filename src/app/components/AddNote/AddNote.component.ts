@@ -26,6 +26,7 @@ public changedColor="#ffffff"
   constructor(private service:httpService,private auth:AuthService ) { }
 public clicked=false;
 public labelId=[];
+public checkList=[];
   ngOnInit() {
    
   }
@@ -38,7 +39,7 @@ public labelId=[];
   
     this.clicked=!this.clicked;
     //calling the api to add the Note through services
- 
+    if(this.title!=""){
     this.service.post("notes/addNotes",{
       "title":this.title,
       "description":this.note,
@@ -54,7 +55,7 @@ public labelId=[];
       console.log(error);
      
     })
- 
+  }
   }
    pin(){
       this.pinned=true;
@@ -65,6 +66,9 @@ public labelId=[];
   labelEvent(event){
     this.labelId.push(event);
     console.log("add component label",event)
+  }
+  onEnter(event){
+    console.log(event,"keydown")
   }
   }
 

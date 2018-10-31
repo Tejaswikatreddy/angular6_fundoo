@@ -8,8 +8,8 @@
     <mat-card-header fxLayout="row" fxLayoutAlign="center center">
       <input type="text" class="note" placeholder="Take a note.." style="margin-top:2%;flex:1 1 auto" (click)="clicked=true">
 
-      <div fxLayout="row" fxLayoutGap="5%">
-        <div><mat-icon>list</mat-icon></div>
+      <div fxLayout="row" fxLayoutGap="10%">
+        <div><mat-icon (click)="check=true && clicked=true">check_box</mat-icon></div>
         <div><mat-icon>photo</mat-icon></div> 
         <div><mat-icon>edit</mat-icon></div> 
       </div>
@@ -24,7 +24,20 @@
           <mat-icon (click)=pin()>fiber_pin</mat-icon>
         </div>
       </div>
-      <div contenteditable="true" class="note" placeholder="Take a Note" id="note"></div>
+      <div contenteditable="true" class="note" placeholder="Take a Note" id="note" *ngIf="!check"></div>
+
+
+
+
+
+          <div *ngIf="check" fxLayout="row">
+
+            <mat-checkbox fxFlex="5%"></mat-checkbox>
+            <div fxFlex="90%" contenteditable="true" class="note" placeholder="List Item" id="note" (keydown.enter)="onEnter($event)"></div>
+
+          </div>
+
+
       <div fxLayout="row" fxLayoutAlign="space-around center">
         <div><app-remind-me></app-remind-me></div>
         <div><app-collaborator></app-collaborator></div>
@@ -34,7 +47,7 @@
         <div><app-more (labelEvent)=labelEvent($event)></app-more></div>
         <div><mat-icon matTooltip="Undo">undo</mat-icon></div>
         <div><mat-icon matTooltip="Redo">redo</mat-icon></div>
-        <div><button mat-button (click)=addNotes()>close</button></div>
+        <div><button mat-button (click)="addNotes();check=false">close</button></div>
       </div>
     </mat-card>
   </div>

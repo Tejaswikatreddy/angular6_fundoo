@@ -17,13 +17,13 @@ import { UpdateNoteComponent } from '../update-note/update-note.component';
 })
 export class NotelistComponent implements OnInit {
  @Input() NoteArray;
+ @Input() searchInput;
  //creating an object for EventEmitter
  @Output() eventEmit=new EventEmitter();
 // public removable=true;
   constructor(private auth: AuthService, public service: httpService,
               public dialog: MatDialog) { }
   ngOnInit() {
-    console.log('notearray-',this.NoteArray)
   }
 /**
  * 
@@ -52,7 +52,9 @@ console.log(note);
       this.eventEmit.emit({});
    });
   }
- 
+  deleteLabel(){
+    
+  }
 }
   
 
