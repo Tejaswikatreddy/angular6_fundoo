@@ -7,7 +7,7 @@
 import { Component, OnInit, EventEmitter, Output, Input, ViewChild} from '@angular/core';
 import { httpService } from '../../services/http.service';
 import { AuthService } from "../../services/auth.service"
-import { error } from '@angular/compiler/src/util';
+
 
 @Component({
   selector: 'app-add-note',
@@ -28,7 +28,7 @@ public clicked=false;
 public labelId=[];
 public checkList=[];
   ngOnInit() {
-   
+
   }
   addNotes(){
     var apiColor=this.changedColor;
@@ -48,11 +48,14 @@ public checkList=[];
       "labelIdList":JSON.stringify(this.labelId)
     },this.auth.getToken()).subscribe(response=>{
         console.log(response);
-
+      this.labelId = []
+      this.labelName=[];
              //emitting an event when the note is added
               this.onNewEntryAdded.emit({})         
     },error=>{
       console.log(error);
+      this.labelId = []
+      this.labelName = [];
      
     })
   }
@@ -63,12 +66,24 @@ public checkList=[];
   colorChanged(event){
     this.changedColor=event;
   }
+  public labelName=[];
   labelEvent(event){
-    this.labelId.push(event);
+    if(this.labelName.indexOf(event)<0){
+      this.labelId.push(event.id);
+      this.labelName.push(event)
+    }
+    else{
+      this.labelName.splice(this.labelName.indexOf(event),1);
+      this.labelId.splice(this.labelId.indexOf(event), 1);
+    }
     console.log("add component label",event)
   }
   onEnter(event){
     console.log(event,"keydown")
+  }
+  deleteLabel(label){
+    this.labelName.splice(this.labelName.indexOf(label), 1);
+    this.labelId.splice(this.labelId.indexOf(label), 1);
   }
   }
 

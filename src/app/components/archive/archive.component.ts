@@ -19,7 +19,7 @@ export class ArchiveComponent implements OnInit {
     var arr = []
     arr.push(this.Note.id)
     console.log(arr);
-    if(this.Note.id==null){
+    if(this.Note.id!=undefined){
     this.service.postDel("notes/archiveNotes",
       {
         "isArchived": true,

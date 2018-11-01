@@ -25,7 +25,7 @@
         </div>
         <div ngStyle.xs="visibility:collapse" ngStyle.lg="display:inline" ngStyle.xl="display:inline" ngStyle.md="display:inline"
           ngStyle.sm="visibility:collapse">
-          <input type="text" placeholder="Search" class="notselected" style="padding-left:5%" [(ngModel)]="searchInput" (click)=searchClicked() (keydown.enter)=passMessage()>
+          <input type="text" placeholder="Search" class="notselected" style="padding-left:5%" [(ngModel)]="searchInput" (click)=searchClicked() (keyup)=passMessage()>
         </div>
       </div>
 

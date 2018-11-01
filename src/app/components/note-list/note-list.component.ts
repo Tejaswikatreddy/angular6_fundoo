@@ -17,7 +17,7 @@ import { UpdateNoteComponent } from '../update-note/update-note.component';
 })
 export class NotelistComponent implements OnInit {
  @Input() NoteArray;
- @Input() searchInput;
+  @Input() searchInput;
  //creating an object for EventEmitter
  @Output() eventEmit=new EventEmitter();
 // public removable=true;
@@ -52,8 +52,15 @@ console.log(note);
       this.eventEmit.emit({});
    });
   }
-  deleteLabel(){
-    
+  deleteLabel(note,label){
+    this.service.postDel("/notes/" + note['id'] + "/addLabelToNotes/" + label.id + "/remove", null, localStorage.getItem('id'))
+      .subscribe(Response => {
+        console.log(Response);
+        this.eventEmit.emit({})
+      }, error => {
+        console.log(error)
+      })
+  
   }
 }
   

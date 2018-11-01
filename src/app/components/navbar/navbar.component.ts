@@ -68,12 +68,14 @@ isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Ha
    * @function Archiveclicked() invoked when the Archive is clicked in the navbar
    */
   ArchiveClicked(){
+    this.searchInput="";
     this.router.navigate(['archive'])
   }
   /**
    * @function TrashClicked() invoked when Trash is clicked in the sidenav
    */
   TrashClicked(){
+    this.searchInput = "";
     this.router.navigate(['trash'])
 
   }
@@ -81,6 +83,7 @@ isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Ha
    * @function NoteClicked() whenever the notes is clicked in the sidenav
    */
   NoteClicked(){
+    this.searchInput = "";
     this.router.navigate(['home'])
   }
   /**

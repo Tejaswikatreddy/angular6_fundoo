@@ -17,9 +17,11 @@ export class MoreComponent implements OnInit {
   public noteLabels = [];
   public search;
   ngOnInit() {
-    console.log(this.Note);
+    // console.log(this.Note);
     
-      if(this.Note!=null){
+    if (this.Note != null && this.Note['noteLabels']!=null){
+        console.log(this.Note);
+        
       for (var i = 0; i < this.Note['noteLabels'].length; i++) {
         this.noteLabels.push(this.Note['noteLabels'][i])
       }
@@ -61,10 +63,9 @@ export class MoreComponent implements OnInit {
       }
       })
   }
-
+public toEvent=[];
   labelSelected(labelObj) {
-    console.log("selected label is", labelObj.isChecked);
-    this.labelEvent.emit(labelObj.id)
+    this.labelEvent.emit(labelObj)
     if (this.Note != null && labelObj.isChecked==null){    
       console.log("add function");
 

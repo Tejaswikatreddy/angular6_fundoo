@@ -22,8 +22,13 @@ public title;
 public description;
 public id;
 public bgcolor=this.data.color;
+  public labels = [];
+
   ngOnInit() {
     console.log(this.data);
+    this.labels = this.data.noteLabels
+      console.log(this.data.noteLabels)
+
   }
   /**
    * @function onClose() invoked when the close button on the popup is clicked
@@ -52,7 +57,17 @@ public bgcolor=this.data.color;
   colorChanged(event){
     this.bgcolor=event;
   }
- 
+  labelAdded(event){
+    // debugger;
+    if (this.labels.indexOf(event) < 0 && this.data.noteLabels.indexOf(event)<0) {
+          this.labels.push(event)
+          console.log(this.labels)
+    }
+    else {
+      this.labels.splice(this.labels.indexOf(event), 1);
+    }
+    console.log("update component label", event)
+  }
   }
 
 

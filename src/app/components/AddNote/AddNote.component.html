@@ -36,6 +36,15 @@
             <div fxFlex="90%" contenteditable="true" class="note" placeholder="List Item" id="note" (keydown.enter)="onEnter($event)"></div>
 
           </div>
+<mat-chip-list>
+  <div *ngFor="let label of labelName">
+    <mat-chip [removable]=true *ngIf="!label.isDeleted">{{label.label}}
+      <mat-icon matChipRemove (click)=deleteLabel(label)>cancel</mat-icon>
+
+    </mat-chip>
+  </div>
+
+</mat-chip-list>
 
 
       <div fxLayout="row" fxLayoutAlign="space-around center">

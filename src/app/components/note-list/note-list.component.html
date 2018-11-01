@@ -16,7 +16,7 @@ ngStyle.xl="width:150px" ngStyle.lg="width:25%" ngStyle.md="width:25%" ngStyle.s
 <mat-chip-list>
   <div *ngFor="let label of note.noteLabels">
     <mat-chip [removable]=true *ngIf="!label.isDeleted">{{label.label}}
-  <mat-icon matChipRemove (click)=deleteLabel()>cancel</mat-icon>
+  <mat-icon matChipRemove (click)=deleteLabel(note,label)>cancel</mat-icon>
 
     </mat-chip></div>
  

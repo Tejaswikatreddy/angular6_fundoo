@@ -49,12 +49,12 @@ public label;
     this.service.get("noteLabels/getNoteLabelList",localStorage.getItem('id')).subscribe(
       response=>{
         this.labelArray=[];
-        this.labelNames=[];
+        // this.labelNames=[];
         console.log(response['data'].details);
         for (var i =0;i< (response['data'].details.length);i++){
           if (response['data'].details[i].isDeleted!=true){
             this.labelArray.push(response['data'].details[i])
-            this.labelNames.push(response['data'].details[i].label)
+            // this.labelNames.push(response['data'].details[i].label)
           }
         }
         console.log(this.labelArray,"labelArray")
@@ -66,8 +66,9 @@ public label;
 
   done(){
     this.addLabel();
-    this.myDiv.nativeElement.innerHTML=null;
     this.getLabels();
+    this.myDiv.nativeElement.innerHTML = null;
+
   }
   delete(labelId){
     var url = "noteLabels/" + labelId +"/deleteNoteLabel"
