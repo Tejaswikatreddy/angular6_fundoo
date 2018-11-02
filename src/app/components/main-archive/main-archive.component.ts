@@ -25,11 +25,15 @@ export class MainArchiveComponent implements OnInit {
   getList(){
     this.service.get("notes/getArchiveNotesList",localStorage.getItem("id")).subscribe(response=>{
       console.log(response['data'].data)
+      this.archiveArray=[];
       //whenever there is a response for the api call push it into an array
       for (var i = 0; i < response['data'].data.length;i++){
         this.archiveArray.push(response['data'].data[i])
       }
       console.log("Archive",this.archiveArray)
     })
+  }
+  eventDone(event){
+    this.getList();
   }
 }

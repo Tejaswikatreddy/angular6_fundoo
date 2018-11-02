@@ -18,11 +18,14 @@ export class ChangeColorComponent implements OnInit {
 //creates an object for the EventEmitter
 @Output() eventEmitter=new EventEmitter(); 
   @Output() eventColor = new EventEmitter(); 
-
+public isDeleted=false;
 @Output() colorCode;
   constructor(public service: httpService) { }
 
   ngOnInit() {
+    if (this.Note != undefined && this.Note.isDeleted == true) {
+      this.isDeleted = true;
+    }
   }
   change(color){
     this.colorCode = color;

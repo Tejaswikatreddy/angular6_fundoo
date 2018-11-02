@@ -8,21 +8,31 @@ import { httpService } from '../../services/http.service';
 })
 export class ArchiveComponent implements OnInit {
   @Input() Note;
+  @Input() Archive;
   constructor(private service: httpService) { }
-
+public isArchived=false;
+public isDeleted=false;
   ngOnInit() {
+    if (this.Note != undefined && this.Note.isArchived==true){
+      this.isArchived=true;
+    }
+    if (this.Note != undefined && this.Note.isDeleted==true){
+      this.isDeleted=true;
+    }
   }
+
   @Output() eventEmit = new EventEmitter();
 
-  archive(){
-    console.log(this.Note.id)
+  archive(flag){
+    this.eventEmit.emit({})
+    if(this.Note!=undefined){
     var arr = []
     arr.push(this.Note.id)
     console.log(arr);
     if(this.Note.id!=undefined){
     this.service.postDel("notes/archiveNotes",
       {
-        "isArchived": true,
+        "isArchived": flag,
         "noteIdList": arr
 
       }, localStorage.getItem("id"))
@@ -34,4 +44,5 @@ export class ArchiveComponent implements OnInit {
       })
     }
   }
+}
   }

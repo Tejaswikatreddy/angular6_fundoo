@@ -10,17 +10,20 @@ export class MoreComponent implements OnInit {
   constructor(private service: httpService) { }
   @Input() Note: object;
   @Output() labelArray=[];
+  @Input() Delete;
   public flag = true;
   public checked = false;
+  public isDeleted=false;
   @Output() eventEmit = new EventEmitter();
   @Output() labelEvent = new EventEmitter();
   public noteLabels = [];
   public search;
   ngOnInit() {
-    // console.log(this.Note);
-    
+    if (this.Note != undefined && this.Note['isDeleted']==true){
+this.isDeleted=true;
+   }
     if (this.Note != null && this.Note['noteLabels']!=null){
-        console.log(this.Note);
+        // console.log(this.Note);
         
       for (var i = 0; i < this.Note['noteLabels'].length; i++) {
         this.noteLabels.push(this.Note['noteLabels'][i])
@@ -30,14 +33,14 @@ export class MoreComponent implements OnInit {
   }
   
  
-  delete() {
-    console.log(this.Note['id'])
+  deleteFunction(val) {
+    console.log("delete funtion")
     var arr = []
     arr.push(this.Note['id'])
     console.log(arr);
     this.service.postDel("notes/trashNotes",
       {
-        "isDeleted": true,
+        "isDeleted": val,
         "noteIdList": arr
       }, localStorage.getItem("id"))
       .subscribe(response => {
@@ -51,6 +54,7 @@ export class MoreComponent implements OnInit {
   
     this.service.get("noteLabels/getNoteLabelList", localStorage.getItem('id')).subscribe(
       response => {
+        this.labelArray=[];
         this.labelArray = response['data'].details;
         if(this.noteLabels.length>0){
         for (var i = 0; i < this.labelArray.length; i++) {

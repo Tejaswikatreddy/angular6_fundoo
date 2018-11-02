@@ -8,7 +8,8 @@ ngStyle.xl="width:150px" ngStyle.lg="width:25%" ngStyle.md="width:25%" ngStyle.s
   <div fxLayout="row">
     <div  fxFlex=90% class="note"  [innerHTML]="note.title" (click)="open(note)"></div>
     <span fxFlex=10%>
-      <mat-icon (click)=pin()>fiber_pin</mat-icon>
+      <!-- <mat-icon (click)=pin()>fiber_pin</mat-icon> -->
+        <app-pin [Note]=note></app-pin>
     </span>
   </div>
   
@@ -22,15 +23,14 @@ ngStyle.xl="width:150px" ngStyle.lg="width:25%" ngStyle.md="width:25%" ngStyle.s
  
 </mat-chip-list>
 <span fxLayout="row " fxLayoutAlign="space-around" class="icons">
-  <div><app-remind-me></app-remind-me></div>
-  <div><app-collaborator></app-collaborator></div>
-  <div><app-change-color [Note]=note (eventEmitter)="eventDone($event)"></app-change-color></div>
-  <div> <app-add-image></app-add-image></div>
-  <div> <app-archive [Note]=note (eventEmit)="eventDone($event)"></app-archive></div>
-  <div> <app-more [Note]=note (eventEmit)="eventDone($event)" ></app-more></div>
+  <div><app-remind-me [Note]=note></app-remind-me></div>
+  <div><app-collaborator [Note]=note ></app-collaborator></div>
+  <div><app-change-color [Note]=note (eventEmitter)="eventDone($event)" ></app-change-color></div>
+  <div> <app-add-image [Note]=note></app-add-image></div>
+  <div> <app-archive [Note]=note (eventEmit)="eventDone($event)" ></app-archive></div>
+  <div> <app-more [Note]=note (eventEmit)="eventDone($event)"  ></app-more></div>
 </span>
 </div>
 </mat-card>
 </div>
 </div>
-<!-- | search:searchInput -->

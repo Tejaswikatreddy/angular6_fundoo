@@ -19,9 +19,9 @@ import { AuthService } from "../../services/auth.service"
 export class AddNoteComponent implements OnInit {
 public title;
 public note;
-public pinned=false;
 public changedColor="#ffffff"
   @Output() onNewEntryAdded = new EventEmitter();
+ 
 //creating an object for eventEmitter
   constructor(private service:httpService,private auth:AuthService ) { }
 public clicked=false;
@@ -30,6 +30,8 @@ public checkList=[];
   ngOnInit() {
 
   }
+  public isPinned = false;
+  public isArchived=false;
   addNotes(){
     var apiColor=this.changedColor;
     this.changedColor = "#ffffff"
@@ -43,8 +45,9 @@ public checkList=[];
     this.service.post("notes/addNotes",{
       "title":this.title,
       "description":this.note,
-      "isPined":this.pinned,
+      "isPined":this.isPinned,
       "color": apiColor,
+      "isArchived":this.isArchived,
       "labelIdList":JSON.stringify(this.labelId)
     },this.auth.getToken()).subscribe(response=>{
         console.log(response);
@@ -60,8 +63,8 @@ public checkList=[];
     })
   }
   }
-   pin(){
-      this.pinned=true;
+   pinEvent(event){
+      this.isPinned=true;
    }
   colorChanged(event){
     this.changedColor=event;
@@ -84,6 +87,9 @@ public checkList=[];
   deleteLabel(label){
     this.labelName.splice(this.labelName.indexOf(label), 1);
     this.labelId.splice(this.labelId.indexOf(label), 1);
+  }
+  archiveEvent(event){
+    this.isArchived=true;
   }
   }
 

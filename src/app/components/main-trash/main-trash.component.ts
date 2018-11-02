@@ -25,6 +25,7 @@ public trashArray=[];
   getList(){
     this.service.get("notes/getTrashNotesList", localStorage.getItem("id")).subscribe(response => {
       console.log(response['data'].data)
+      this.trashArray=[];
       //wheever there is a response for the api call push it into an array
       for (var i = 0; i < response['data'].data.length; i++) {
         this.trashArray.push(response['data'].data[i])
@@ -32,5 +33,8 @@ public trashArray=[];
       console.log("trash", this.trashArray)
     })
   }
-
+eventDone(event){
+  console.log("main-trash")
+  this.getList();
+}
 }

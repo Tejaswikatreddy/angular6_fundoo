@@ -104,6 +104,7 @@ isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Ha
     });
   }
   public labelArray=[];
+  public labelName;
   getLabels() {
 
     this.service.get("noteLabels/getNoteLabelList", localStorage.getItem('id')).subscribe(
@@ -121,5 +122,10 @@ isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Ha
   }
   passMessage(){
     this.dataService.changeMessage(this.searchInput)
+  }
+  labelClicked(label){
+    //this.dataService.isLabelChanged.next(true)
+    var label=label.label;
+    this.router.navigate(["label/"+label])
   }
   }

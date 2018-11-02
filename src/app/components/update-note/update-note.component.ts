@@ -27,7 +27,7 @@ public bgcolor=this.data.color;
   ngOnInit() {
     console.log(this.data);
     this.labels = this.data.noteLabels
-      console.log(this.data.noteLabels)
+      console.log(this.labels,"initial")
 
   }
   /**
@@ -61,12 +61,14 @@ public bgcolor=this.data.color;
     // debugger;
     if (this.labels.indexOf(event) < 0 && this.data.noteLabels.indexOf(event)<0) {
           this.labels.push(event)
-          console.log(this.labels)
+          console.log(this.labels,"adding")
     }
     else {
       this.labels.splice(this.labels.indexOf(event), 1);
+      console.log(this.labels,"removing");
+      
     }
-    console.log("update component label", event)
+    // console.log("update component label", event)
   }
   }
 

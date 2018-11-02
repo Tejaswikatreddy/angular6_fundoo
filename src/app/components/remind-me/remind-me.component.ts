@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-remind-me',
@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./remind-me.component.css']
 })
 export class RemindMeComponent implements OnInit {
+@Input()  Note;
+  public isDeleted = false;
 
   constructor() { }
 
   ngOnInit() {
+    if (this.Note!=undefined && this.Note.isDeleted == true) {
+      this.isDeleted = true;
+    }
   }
 
 }

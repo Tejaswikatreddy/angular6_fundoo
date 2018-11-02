@@ -21,7 +21,8 @@
       <div fxLayout="row">
         <div contenteditable="true" placeholder="Title" class="note" id="title"></div>
         <div>
-          <mat-icon (click)=pin()>fiber_pin</mat-icon>
+          <!-- <mat-icon (click)=pin()>fiber_pin</mat-icon> -->
+          <app-pin (eventEmit)=pinEvent()></app-pin>
         </div>
       </div>
       <div contenteditable="true" class="note" placeholder="Take a Note" id="note" *ngIf="!check"></div>
@@ -48,14 +49,13 @@
 
 
       <div fxLayout="row" fxLayoutAlign="space-around center">
-        <div><app-remind-me></app-remind-me></div>
+        <div><app-remind-me ></app-remind-me></div>
         <div><app-collaborator></app-collaborator></div>
         <div><app-change-color [Note]="" (eventColor)=colorChanged($event) ></app-change-color></div>
         <div><app-add-image></app-add-image></div>
-        <div><app-archive></app-archive></div>
+        <div><app-archive (eventEmit)=archiveEvent($event)></app-archive></div>
         <div><app-more (labelEvent)=labelEvent($event)></app-more></div>
-        <div><mat-icon matTooltip="Undo">undo</mat-icon></div>
-        <div><mat-icon matTooltip="Redo">redo</mat-icon></div>
+      
         <div><button mat-button (click)="addNotes();check=false">close</button></div>
       </div>
     </mat-card>

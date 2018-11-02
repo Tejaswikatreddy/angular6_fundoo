@@ -49,12 +49,10 @@ public label;
     this.service.get("noteLabels/getNoteLabelList",localStorage.getItem('id')).subscribe(
       response=>{
         this.labelArray=[];
-        // this.labelNames=[];
-        console.log(response['data'].details);
+              console.log(response['data'].details);
         for (var i =0;i< (response['data'].details.length);i++){
           if (response['data'].details[i].isDeleted!=true){
             this.labelArray.push(response['data'].details[i])
-            // this.labelNames.push(response['data'].details[i].label)
           }
         }
         console.log(this.labelArray,"labelArray")

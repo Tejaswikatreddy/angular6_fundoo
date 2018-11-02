@@ -55,7 +55,7 @@
           <a mat-list-item><img src="../../../assets/remainder.svg" class="svg"><span class="sideNotes">Remainders</span></a>
           <hr>
           <p style="padding-left:10px">Labels<button mat-button style="margin-left: 30%" (click)="openDialog()">EDIT</button></p>
-          <a mat-list-item *ngFor="let label of labelArray">
+          <a mat-list-item *ngFor="let label of labelArray" (click)="labelClicked(label)">
             <img src="../../../assets/label.svg" class="svg">
             <span class="sideNotes">{{label.label}}</span></a>
           <a mat-list-item (click)="openDialog()"><img src="../../../assets/create.svg" class="svg">
