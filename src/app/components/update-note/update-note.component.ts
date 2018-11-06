@@ -23,13 +23,16 @@ public description;
 public id;
 public bgcolor=this.data.color;
   public labels = [];
-
+  public checklist=false;
+  public modifiedCheckList;
+public arrayObj:any={}
   ngOnInit() {
-    console.log(this.data);
-    this.labels = this.data.noteLabels
-      console.log(this.labels,"initial")
-
-  }
+   
+    this.labels=this.data.noteLabels;
+    if (this.data.noteCheckLists.length>0){
+      this.checklist=true;
+    }
+}
   /**
    * @function onClose() invoked when the close button on the popup is clicked
    */
@@ -40,6 +43,7 @@ public bgcolor=this.data.color;
   }
   //a function to call the update notes api
   updateNotes(){
+    if(this.checklist==false){
     console.log(document.getElementById("Updatedtitle").innerHTML)
     this.title = document.getElementById("Updatedtitle").innerHTML;
     this.description = document.getElementById("Updatednote").innerHTML;
@@ -53,22 +57,69 @@ public bgcolor=this.data.color;
       console.log(response);
      
     })
+  }
+  else{
+    var apiData={
+         "itemName": this.modifiedCheckList.itemName,
+         "status":this.modifiedCheckList.status
+    }
+      var url = "notes/" +this.data.id+ "/checklist/" + this.modifiedCheckList.id + "/update";
+      this.service.postDel(url, JSON.stringify(apiData), localStorage.getItem('id')).subscribe(response => {
+        console.log(response);
+
+      })
+  }
+    }
+    editing(editedList,event){
+      
+      console.log(editedList);
+      if(event.code=="Enter")
+      this.modifiedCheckList=editedList;
+      this.updateNotes();
     }
   colorChanged(event){
-    this.bgcolor=event;
+    this.bgcolor=event; 
   }
   labelAdded(event){
-    // debugger;
-    if (this.labels.indexOf(event) < 0 && this.data.noteLabels.indexOf(event)<0) {
-          this.labels.push(event)
-          console.log(this.labels,"adding")
+    var flag=false,index;
+  for(var i=0;i<this.labels.length;i++){
+    if(event.id==this.labels[i].id){
+      flag=true;
+      index=i;
     }
-    else {
-      this.labels.splice(this.labels.indexOf(event), 1);
-      console.log(this.labels,"removing");
-      
+  }
+  if(flag==true){
+    this.labels.splice(index,1)
+  }
+  else{
+    this.labels.push(event)
+  }
+   
+  }
+  checkBox(checkList){
+    
+    if (checkList.status=="open"){
+      checkList.status = "close"
     }
-    // console.log("update component label", event)
+    else{
+      checkList.status = "open"
+    }
+    console.log(checkList);
+    this.modifiedCheckList=checkList;
+    this.updateNotes();
+  }
+  public removedList;
+  removeList(checklist){
+    console.log(checklist)
+    this.removedList=checklist;
+    this.removeCheckList()
+  }
+  removeCheckList(){
+    var url = "notes/" + this.data.id + "/checklist/" + this.removedList.id + "/remove";
+    this.service.postDel(url, null, localStorage.getItem('id')).subscribe(response => {
+      console.log(response);
+
+    })
   }
   }
 

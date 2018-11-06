@@ -19,17 +19,19 @@ export class MoreComponent implements OnInit {
   public noteLabels = [];
   public search;
   ngOnInit() {
+
     if (this.Note != undefined && this.Note['isDeleted']==true){
-this.isDeleted=true;
+          this.isDeleted=true;
    }
-    if (this.Note != null && this.Note['noteLabels']!=null){
-        // console.log(this.Note);
-        
+
+    if (this.Note != null && this.Note['noteLabels']!=null){    
       for (var i = 0; i < this.Note['noteLabels'].length; i++) {
         this.noteLabels.push(this.Note['noteLabels'][i])
       }
     }
-      this.getLabels()
+
+      this.getLabels();
+      
   }
   
  

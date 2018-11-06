@@ -1,4 +1,4 @@
-<div style="padding:20px;height:auto;overflow:hidden">
+<div  class="mainDiv">
 <h1 mat-dialog-title>Create Labels</h1>
 <div mat-dialog-content>
 <div flexLayout="row" fxLayoutAlign="space-between center"> 
@@ -17,7 +17,7 @@
 </span>
 </div>
 <div fxFlex="80%" [innerHTML]="label.label" class="label" *ngIf="!editable || label.label!=editLabel"></div>
-<div fxFlex="80%" [innerHTML]="label.label" class="label" contenteditable="true" *ngIf="editable && label.label==editLabel" style="outline: none" #editDiv></div>
+<div fxFlex="80%" [innerHTML]="label.label" class="label" contenteditable="true" *ngIf="editable && label.label==editLabel"  #editDiv></div>
 <div fxFlex="10%"><mat-icon (click)=edit(label) *ngIf="editDoneIcon || label.id!=editId">edit</mat-icon>
                   <mat-icon (click)=editDone(label) *ngIf="editClick && label.id==editId">done</mat-icon></div>
 
@@ -26,6 +26,6 @@
 </div>
 <div mat-dialog-actions>
   
-  <button mat-button  cdkFocusInitial (click)=onClose() style="float:right">Done</button>
+  <button mat-button  cdkFocusInitial (click)=onClose() class="doneButton">Done</button>
 </div>
 </div>

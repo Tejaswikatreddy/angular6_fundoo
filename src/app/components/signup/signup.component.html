@@ -1,4 +1,4 @@
-<!-- <a routerLink="/login"></a> -->
+
 
 <div fxLayout="column"  fxLayoutGap="10%">
   <div fxFlex.lg="10%" fxFlex.xl="10%" fxFlex.md="10%" fxFlex.sm="0%" fxFlex.xs="0%" ></div>
@@ -9,14 +9,14 @@
     <div fxFlex.lg="40%" fxFlex.xl="80%" fxFlex.md="80%" fxFlex.sm="100%" fxFlex.xs="100%">
       <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
       <mat-card>
-        <div >
-          <mat-card-title><span style="color:darkcyan">F</span>
-          <span style="color:palevioletred">U</span>
-          <span style="color:rgb(11, 235, 235)">N</span>
-          <span style="color:rgb(124, 238, 153)">D</span>
-          <span style="color:rgb(244, 247, 118)">O</span>
-          <span style="color:darkcyan">O</span></mat-card-title>
-          <!-- <div mat-card-avatar class="header-image"></div> -->
+        <div>
+          <mat-card-title><span class=f>F</span>
+              <span class=u>U</span>
+              <span class=n>N</span>
+              <span class=d>D</span>
+              <span class=o>O</span>
+            <span class=f>O</span></mat-card-title>
+      
           <mat-card-subtitle>Sign Up</mat-card-subtitle>
           <mat-form-field  >
             <input matInput placeholder="first name" type="text" name="firstName" [(ngModel)]="model.firstName"  
@@ -28,7 +28,7 @@
               </mat-error>
             </mat-error>
           </mat-form-field>
-          <mat-form-field  style="margin-left:2%">
+          <mat-form-field class="lastField">
             <input matInput  placeholder="last name" name="lastName" [(ngModel)]="model.lastName"  
             [ngClass]="{ 'is-invalid': f.submitted && lastName.invalid }" #lastName="ngModel" required>
               <mat-error *ngIf="f.submitted && lastName.invalid">
@@ -39,7 +39,7 @@
               </mat-error>
           </mat-form-field>
       
-          <mat-form-field style="width:80%" >
+          <mat-form-field  class="emailField">
             <input matInput type="email"  placeholder="email id" name="emailid" pattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
             [(ngModel)]="model.email"  [ngClass]="{ 'is-invalid': f.submitted && emailid.invalid }"  #emailid="ngModel" required>
             <mat-error *ngIf="f.submitted && emailid.invalid" >
@@ -52,7 +52,7 @@
             </mat-error>
             </mat-error>
           </mat-form-field>
-          <mat-form-field style="margin-left:2%">
+          <mat-form-field class="confrmPassword">
             <input matInput name="pass"  placeholder="Enter your password" [type]="hide ? 'password' : 'text'" #password="ngModel" 
               [(ngModel)]="model.password"  [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required >
             <mat-error *ngIf="f.submitted && password.invalid ">
@@ -65,7 +65,7 @@
             </mat-error>
            
           </mat-form-field>
-          <mat-form-field style="margin-left:2%">
+          <mat-form-field  class="confrmPassword">
             <input matInput name="cpassword"   placeholder="Enter your password" 
             [type]="hide ? 'password' : 'text'" required #Cpassword="ngModel" [(ngModel)]="model.cpassword"
              [ngClass]="{ 'is-invalid': f.submitted && Cpassword.invalid }">
@@ -84,9 +84,9 @@
           <div flexLayout="row" fxLayoutAlign="center" fxLayoutGap="5%">
             <div fxFlex.lg="40%"  *ngFor="let Card of cards">
               <mat-card matbutton (click)=respond(Card) [ngClass]="Card.select ? 'selected' : 'notselected'"
-               style="height:45px" >
-                <mat-card-title style="font-size:15px">{{Card.name}}</mat-card-title>
-                <mat-card-content style="font-size:10px">{{Card.description}}</mat-card-content>
+                class=card >
+                <mat-card-title  class="cardTitle">{{Card.name}}</mat-card-title>
+                <mat-card-content  class="cardDescription">{{Card.description}}</mat-card-content>
               </mat-card>
             </div>
           </div>

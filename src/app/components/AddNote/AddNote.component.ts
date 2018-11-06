@@ -4,7 +4,7 @@
  *  @author         : K.Dhana Tejaswi
 */
 
-import { Component, OnInit, EventEmitter, Output, Input, ViewChild} from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, ElementRef, ViewChild} from '@angular/core';
 import { httpService } from '../../services/http.service';
 import { AuthService } from "../../services/auth.service"
 
@@ -24,41 +24,83 @@ public changedColor="#ffffff"
  
 //creating an object for eventEmitter
   constructor(private service:httpService,private auth:AuthService ) { }
+  @ViewChild('editDiv') public editDiv: ElementRef;
+
 public clicked=false;
 public labelId=[];
 public checkList=[];
+public dataArray=[];
+public dataArrayApi=[];
+public isChecked=false;
+public status="open"
   ngOnInit() {
 
   }
   public isPinned = false;
   public isArchived=false;
+  public body:any={}
+  public check=false;
   addNotes(){
     var apiColor=this.changedColor;
     this.changedColor = "#ffffff"
-    //binding values from the html page
     this.title = document.getElementById("title").innerHTML;
+    this.clicked = !this.clicked;
+
+    //binding values from the html page
+    if(this.check==false){
     this.note=document.getElementById("note").innerHTML;
-  
-    this.clicked=!this.clicked;
     //calling the api to add the Note through services
-    if(this.title!=""){
-    this.service.post("notes/addNotes",{
-      "title":this.title,
-      "description":this.note,
-      "isPined":this.isPinned,
-      "color": apiColor,
-      "isArchived":this.isArchived,
-      "labelIdList":JSON.stringify(this.labelId)
-    },this.auth.getToken()).subscribe(response=>{
+   
+           this.body={
+          "title": this.title,
+          "description": this.note,
+          "isPined": this.isPinned,
+          "color": apiColor,
+          "isArchived": this.isArchived,
+          "labelIdList": JSON.stringify(this.labelId)
+        }
+    
+    }
+      else{
+        console.log("else part");
+        
+ for(var i=0;i<this.dataArray.length;i++){
+   if(this.dataArray[i].isChecked==true){
+    this.status="close"
+   }
+   var apiObj={
+     "itemName":this.dataArray[i].data,
+     "status":this.status
+   }
+   this.dataArrayApi.push(apiObj)
+   this.status="open"
+ }
+ console.log(this.dataArrayApi);
+ 
+       this.body={
+         "title": this.title,
+         "checklist":JSON.stringify(this.dataArrayApi),
+         "isPined": this.isPinned,
+         "color": apiColor,
+         "isArchived": this.isArchived,
+         "labelIdList": JSON.stringify(this.labelId)
+        }
+ }
+if (this.title != "") {
+    this.service.post("notes/addNotes",this.body,this.auth.getToken()).subscribe(response=>{
         console.log(response);
       this.labelId = []
       this.labelName=[];
+      this.dataArray=[];
+      this.dataArrayApi=[];
              //emitting an event when the note is added
               this.onNewEntryAdded.emit({})         
     },error=>{
       console.log(error);
       this.labelId = []
       this.labelName = [];
+      this.dataArray=[];
+      this.dataArrayApi=[];
      
     })
   }
@@ -81,9 +123,49 @@ public checkList=[];
     }
     console.log("add component label",event)
   }
-  onEnter(event){
-    console.log(event,"keydown")
+  public data;
+  public i=0;
+  onEnter(){
+   this.i++;
+     if(this.data!=null){
+    console.log(event,"keydown");
+    var obj={
+      "index":this.i,
+      "data":this.data,
+      "isChecked":this.isChecked
+    }
+    this.dataArray.push(obj)
+    console.log(this.dataArray);
+    this.data=null;
+     }
   }
+  onDelete(deletedObj){
+    console.log("onDelete function");
+       for(var i=0;i<this.dataArray.length;i++){
+          if(deletedObj.index==this.dataArray[i].index){
+            this.dataArray.splice(i,1);
+            break;
+       }
+        
+      }
+    console.log(this.dataArray)
+  }
+  // public editedData
+  // editing(event,edited){
+  //   // console.log("editing");
+  //   // console.log(event);
+    
+  //   if(event.code == "Enter"){
+  //     console.log("enter pressed");
+  //      for(var i=0;i<this.dataArray.length;i++){
+  //   if(edited.index==this.dataArray[i].index){
+  //     this.dataArray[i].data=edited.data;
+  //   }
+  //   }
+  //   console.log(this.dataArray)
+  //   }
+   
+  // }
   deleteLabel(label){
     this.labelName.splice(this.labelName.indexOf(label), 1);
     this.labelId.splice(this.labelId.indexOf(label), 1);

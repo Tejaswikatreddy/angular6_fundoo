@@ -12,12 +12,12 @@
     <mat-card >
       <div >
         <div>
-        <mat-card-title><span style="color:darkcyan">F</span>
-        <span style="color:palevioletred">U</span>
-        <span style="color:rgb(11, 235, 235)">N</span>
-        <span style="color:rgb(124, 238, 153)">D</span>
-        <span style="color:rgb(244, 247, 118)">O</span>
-        <span style="color:darkcyan">O</span></mat-card-title>
+        <mat-card-title><span class=f>F</span>
+          <span  class=u>U</span>
+          <span class=n>N</span>
+          <span class=d>D</span>
+          <span class=o>O</span>
+        <span class=f>O</span></mat-card-title>
         <mat-card-subtitle>sign in</mat-card-subtitle>
           </div>
         
@@ -40,7 +40,7 @@
         
 
         
-          <mat-form-field style="margin-left:2%">
+          <mat-form-field >
             <input matInput name="pass" placeholder="Enter your password" [type]="hide ? 'password' : 'text'" #password="ngModel"
               [(ngModel)]="model.password" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required>
             <mat-error *ngIf="f.submitted && password.invalid ">
@@ -58,7 +58,7 @@
 
         <div>
          <a routerLink="/forgot">forgot password?</a>   
-         <div style="display:inline;padding-left:10px"><a routerLink="/signup">create an account..</a> </div>
+         <div  class="createAccount"><a routerLink="/signup">create an account..</a> </div>
           <button mat-align="center" mat-button class="button" (click)=login()>login</button>
         </div>
       </div>

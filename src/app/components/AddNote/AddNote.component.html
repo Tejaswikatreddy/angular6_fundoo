@@ -4,9 +4,9 @@
     <div fxFlex="20%"></div>
 <div fxFlex="80%" fxFlex.xs="100%"  fxLayoutAlign="space-around center">
 <div *ngIf="!clicked">
-  <mat-card class="example-card" style="height:auto;width:550px">
+  <mat-card class="example-card" class="card">
     <mat-card-header fxLayout="row" fxLayoutAlign="center center">
-      <input type="text" class="note" placeholder="Take a note.." style="margin-top:2%;flex:1 1 auto" (click)="clicked=true">
+      <input type="text" class="note" placeholder="Take a note.."  (click)="clicked=true">
 
       <div fxLayout="row" fxLayoutGap="10%">
         <div><mat-icon (click)="check=true && clicked=true">check_box</mat-icon></div>
@@ -17,26 +17,26 @@
   </mat-card>
 </div>
   <div *ngIf="clicked">
-    <mat-card class="example-card" style="height:auto;width:550px" [style.backgroundColor]="changedColor">
+    <mat-card class="example-card" class=card [style.backgroundColor]="changedColor">
       <div fxLayout="row">
         <div contenteditable="true" placeholder="Title" class="note" id="title"></div>
-        <div>
-          <!-- <mat-icon (click)=pin()>fiber_pin</mat-icon> -->
-          <app-pin (eventEmit)=pinEvent()></app-pin>
-        </div>
+        <div><app-pin (eventEmit)=pinEvent()></app-pin></div>
       </div>
       <div contenteditable="true" class="note" placeholder="Take a Note" id="note" *ngIf="!check"></div>
-
-
-
-
-
-          <div *ngIf="check" fxLayout="row">
-
-            <mat-checkbox fxFlex="5%"></mat-checkbox>
-            <div fxFlex="90%" contenteditable="true" class="note" placeholder="List Item" id="note" (keydown.enter)="onEnter($event)"></div>
-
+        <div *ngIf="check">
+          <div *ngFor="let data of dataArray" fxLayout="row">
+           <mat-checkbox fxFlex="5%" [(ngModel)]=data.isChecked (click)="isChecked=!isChecked"></mat-checkbox>
+           <input fxFlex="90%"  class="note"  [(ngModel)]=data.data  [style.backgroundColor]="changedColor">
+                <mat-icon fxFlex="5%" (click)=onDelete(data) matTooltip="delete">cancel</mat-icon>
           </div>
+          <hr>
+           <div fxLayout="row"> 
+            <mat-icon fxFlex="5%">add</mat-icon>
+            <input [(ngModel)]=data fxFlex="95%" class="note" placeholder="List Item" (keydown.enter)="onEnter()" 
+            [style.backgroundColor]="changedColor" (keydown.backspace)="onDelete()"/>
+            </div>
+           <hr>
+        </div>
 <mat-chip-list>
   <div *ngFor="let label of labelName">
     <mat-chip [removable]=true *ngIf="!label.isDeleted">{{label.label}}
@@ -48,7 +48,7 @@
 </mat-chip-list>
 
 
-      <div fxLayout="row" fxLayoutAlign="space-around center">
+      <div fxLayout="row" fxLayoutAlign="space-around center" class="icondiv">
         <div><app-remind-me ></app-remind-me></div>
         <div><app-collaborator></app-collaborator></div>
         <div><app-change-color [Note]="" (eventColor)=colorChanged($event) ></app-change-color></div>

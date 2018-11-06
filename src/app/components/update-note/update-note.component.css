@@ -48,3 +48,12 @@
     padding:0px;
     border-radius: 0px
 }
+.card{
+    height:auto;width:550px
+}
+.divicon{
+    padding-top:10px
+}
+.clearIcon{
+    opacity: 1
+}

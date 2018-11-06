@@ -28,8 +28,10 @@ export class MainArchiveComponent implements OnInit {
       this.archiveArray=[];
       //whenever there is a response for the api call push it into an array
       for (var i = 0; i < response['data'].data.length;i++){
+        if (response['data'].data[i].isDeleted==false){
         this.archiveArray.push(response['data'].data[i])
-      }
+
+            }      }
       console.log("Archive",this.archiveArray)
     })
   }

@@ -18,15 +18,15 @@ import { UpdateNoteComponent } from '../update-note/update-note.component';
 export class NotelistComponent implements OnInit {
  @Input() NoteArray;
   @Input() searchInput;
+  public checkArray=[];
  //creating an object for EventEmitter
  @Output() eventEmit=new EventEmitter();
-// public removable=true;
+ public isChecked=false;
   constructor(private auth: AuthService, public service: httpService,
               public dialog: MatDialog) { }
-  ngOnInit() {
+  ngOnInit() {  
   }
 /**
- * 
  * @function eventDone() invoked when there is an event in the child component
  */
  eventDone(event){
@@ -62,6 +62,32 @@ console.log(note);
       })
   
   }
-}
+  public modifiedCheckList
+  checkBox(checkList,note) {
+
+    if (checkList.status == "open") {
+      checkList.status = "close"
+    }
+    else {
+      checkList.status = "open"
+    }
+    console.log(checkList);
+    this.modifiedCheckList = checkList;
+    this.updatelist(note.id);
+  }
+  updatelist(id){
+    var apiData = {
+      "itemName": this.modifiedCheckList.itemName,
+      "status": this.modifiedCheckList.status
+    }
+    var url = "notes/" + id + "/checklist/" + this.modifiedCheckList.id + "/update";
+    this.service.postDel(url, JSON.stringify(apiData), localStorage.getItem('id')).subscribe(response => {
+      console.log(response);
+
+    })
+  }
+  }
+
   
 
+// noteCheckLists  itemName

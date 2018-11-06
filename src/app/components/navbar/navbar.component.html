@@ -1,6 +1,6 @@
 <div fxFlex>
   <div fxLayout="column wrap">
-    <mat-toolbar color="primary" position="fixed" style="overflow-x: hidden">
+    <mat-toolbar color="primary" position="fixed" class="toolbar">
       <div fxFlex.xl="20%" fxFlex.lg="20%" fxFlex.md="20%" fxFlex.sm="30%" fxFlex.xs="40%">
         <div fxFlex=40%>
           <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" ngStyle.md="float:left">
@@ -19,29 +19,27 @@
         flexLayout="row">
         <div ngStyle.xs="float:right;" ngStyle.lg="display:inline" ngStyle.xl="display:inline" ngStyle.md="display:inline"
           ngStyle.sm="float:right">
-          <button type="button" mat-icon-button style="position:absolute">
+          <button type="button" mat-icon-button  class="searchButton">
             <mat-icon>search</mat-icon>
           </button>
         </div>
         <div ngStyle.xs="visibility:collapse" ngStyle.lg="display:inline" ngStyle.xl="display:inline" ngStyle.md="display:inline"
           ngStyle.sm="visibility:collapse">
-          <input type="text" placeholder="Search" class="notselected" style="padding-left:5%" [(ngModel)]="searchInput" (click)=searchClicked() (keyup)=passMessage()>
+          <input type="text" placeholder="Search" class="notselected" [(ngModel)]="searchInput" (click)=searchClicked() (keyup)=passMessage()>
         </div>
       </div>
 
       <div fxFlex.xl="20%" fxFlex.lg="20%" fxFlex.md="20%" fxFlex.sm="40%" fxFlex.xs="40%">
         <div fxFlex="60%">
-          <button type="button" mat-icon-button style="float:right">
+          <button type="button" mat-icon-button  class="refreshButton">
             <mat-icon>refresh</mat-icon>
           </button></div>
         <div fxFlex="20%">
-          <button type="button" mat-icon-button style="float:right" ngStyle.xs="visibility:collapse">
+          <button type="button" mat-icon-button  ngStyle.xs="visibility:collapse">
             <mat-icon>view_agenda</mat-icon>
           </button></div>
         <div fxFlex="20%">
-          <button mat-mini-fab (click)="clicked=!clicked" style="margin-right:100px;background-color: grey;color:black">{{frstLetter}}</button>
-
-
+          <button mat-mini-fab (click)="clicked=!clicked" class="profileButton">{{frstLetter}}</button>
         </div>
       </div>
     </mat-toolbar>
@@ -54,7 +52,7 @@
           <a mat-list-item (click)=NoteClicked()><img src="../../../assets/notes.svg" class="svg"><span class="sideNotes">Notes</span></a>
           <a mat-list-item><img src="../../../assets/remainder.svg" class="svg"><span class="sideNotes">Remainders</span></a>
           <hr>
-          <p style="padding-left:10px">Labels<button mat-button style="margin-left: 30%" (click)="openDialog()">EDIT</button></p>
+          <p class="label">Labels<button mat-button class="editButton"  (click)="openDialog()">EDIT</button></p>
           <a mat-list-item *ngFor="let label of labelArray" (click)="labelClicked(label)">
             <img src="../../../assets/label.svg" class="svg">
             <span class="sideNotes">{{label.label}}</span></a>
@@ -68,11 +66,11 @@
         
         </mat-nav-list>
       </mat-sidenav>
-      <mat-sidenav-content style="position:fixed;width:-webkit-fill-available; width: -moz-available;overflow-y: scroll">
+      <mat-sidenav-content class="content">
         
             <router-outlet ></router-outlet>
           
-            <mat-card style="position:fixed;margin-top:64px;right: 0;top: 0" *ngIf="clicked">
+            <mat-card class="profileCard"  *ngIf="clicked">
               <mat-list>
               <mat-card-header>
                 <div mat-card-avatar class="example-header-image">
@@ -84,7 +82,7 @@
               </mat-list>
               <mat-divider></mat-divider>
               <mat-list>
-                          <button mat-stroked-button (click)=logout() style="float: right">Logout</button>
+                          <button mat-stroked-button (click)=logout() class="refreshButton">Logout</button>
               </mat-list>
             </mat-card>
         

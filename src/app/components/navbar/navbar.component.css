@@ -26,9 +26,13 @@
   height: 40px;
   background-color:#e4a700;
   border:none;
-  font-size: 20px
+  font-size: 20px;
+  padding-left:5%
+ 
 }
-
+ .refreshButton{
+    float:right
+  }
 
 .divnotselected{
    border:5px solid #fb0;
@@ -104,4 +108,31 @@ input:focus {
   font-size:20px;
   background-color:dodgerblue;
   color:black
+}
+.toolbar{
+  overflow-x: hidden
+}
+.searchButton{
+  position:absolute
+}
+.refreshButton{
+  float:right
+}
+.profileButton{
+  margin-right:100px;background-color: grey;color:black
+}
+.label{
+  padding-left:10px
+}
+.editButton{
+  margin-left: 30%
+}
+.content{
+  position:fixed;
+  width:-webkit-fill-available;
+   width: -moz-available;
+   overflow-y: scroll
+}
+.profileCard{
+  position:fixed;margin-top:64px;right: 0;top: 0
 }

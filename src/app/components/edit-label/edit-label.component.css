@@ -43,7 +43,8 @@
 }
 .label{
      word-wrap: break-word;
- width:120px
+ width:120px;
+ outline: none
 }
 /* .hovericon > .delete + .lab */
 .hovericon :hover .delete
@@ -52,4 +53,12 @@
 }
 .hovericon:hover .lab {
   display: inherit;
+}
+.mainDiv{
+    padding:20px;
+    height:auto;
+    overflow:hidden
+}
+.doneButton{
+    float:right
 }
